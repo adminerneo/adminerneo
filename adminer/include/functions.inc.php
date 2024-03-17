@@ -1497,7 +1497,7 @@ function edit_form($table, $fields, $row, $update) {
 	if (!$fields) {
 		echo "<p class='error'>" . lang('You have no privileges to update this table.') . "\n";
 	} else {
-		echo "<table cellspacing='0' class='layout'>" . script("qsl('table').onkeydown = editingKeydown;");
+		echo "<table class='layout'>" . script("qsl('table').onkeydown = editingKeydown;");
 
 		$first = 0;
 		foreach ($fields as $name => $field) {
