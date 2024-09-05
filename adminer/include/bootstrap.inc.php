@@ -2,7 +2,7 @@
 
 error_reporting(6135); // errors and warnings
 set_error_handler(function ($errno, $errstr) {
-	return (bool)preg_match('~^(Trying to access array offset on( value of type)? null|Undefined array key)~', $errstr);
+	return (bool)preg_match('~^Undefined array key~', $errstr);
 }, E_WARNING);
 
 include "../adminer/include/debug.inc.php";

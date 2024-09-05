@@ -338,9 +338,9 @@ if (!$columns && support("table")) {
 			$rank = 1;
 			foreach ($rows[0] as $key => $val) {
 				if (!isset($unselected[$key])) {
-					$val = $_GET["columns"][key($select)];
+					$val = $_GET["columns"][key($select)] ?? null;
 					$field = $fields[$select ? ($val ? $val["col"] : current($select)) : $key];
-					$name = ($field ? $adminer->fieldName($field, $rank) : ($val["fun"] ? "*" : h($key)));
+					$name = ($field ? $adminer->fieldName($field, $rank) : (isset($val["fun"]) ? "*" : h($key)));
 					if ($name != "") {
 						$rank++;
 						$names[$key] = $name;
@@ -352,7 +352,7 @@ if (!$columns && support("table")) {
 						if ($sortable) {
 							echo '<a href="' . h($href . ($order[0] == $column || $order[0] == $key || (!$order && $is_group && $group[0] == $column) ? $desc : '')) . '">'; // $order[0] == $key - COUNT(*)
 						}
-						echo apply_sql_function($val["fun"], $name); //! columns looking like functions
+						echo apply_sql_function($val["fun"] ?? null, $name); //! columns looking like functions
 						if ($sortable) {
 							echo "</a>";
 						}
@@ -360,13 +360,13 @@ if (!$columns && support("table")) {
 						if ($sortable) {
 							echo "<a href='" . h($href . $desc) . "' title='" . lang('descending') . "' class='text'> ↓</a>";
 						}
-						if (!$val["fun"] && isset($field["privileges"]["where"])) {
+						if (!isset($val["fun"]) && isset($field["privileges"]["where"])) {
 							echo '<a href="#fieldset-search" title="' . lang('Search') . '" class="text jsonly"> =</a>';
 							echo script("qsl('a').onclick = partial(selectSearch, '" . js_escape($key) . "');");
 						}
 						echo "</span>";
 					}
-					$functions[$key] = $val["fun"];
+					$functions[$key] = $val["fun"] ?? null;
 					next($select);
 				}
 			}
@@ -403,7 +403,7 @@ if (!$columns && support("table")) {
 				foreach ($unique_array as $key => $val) {
 					if (($jush == "sql" || $jush == "pgsql") && preg_match('~char|text|enum|set~', $fields[$key]["type"]) && strlen($val) > 64) {
 						$key = (strpos($key, '(') ? $key : idf_escape($key)); //! columns looking like functions
-						$key = "MD5(" . ($jush != 'sql' || preg_match("~^utf8~", $fields[$key]["collation"]) ? $key : "CONVERT($key USING " . charset($connection) . ")") . ")";
+						$key = "MD5(" . ($jush != 'sql' || preg_match("~^utf8~", $fields[$key]["collation"] ?? "") ? $key : "CONVERT($key USING " . charset($connection) . ")") . ")";
 						$val = md5($val);
 					}
 					$unique_idf .= "&" . ($val !== null ? urlencode("where[" . bracket_escape($key) . "]") . "=" . urlencode($val === false ? "f" : $val) : "null%5B%5D=" . urlencode($key));
@@ -422,7 +422,7 @@ if (!$columns && support("table")) {
 						}
 
 						$link = "";
-						if (preg_match('~blob|bytea|raw|file~', $field["type"]) && $val != "") {
+						if ($field && preg_match('~blob|bytea|raw|file~', $field["type"]) && $val != "") {
 							$link = ME . 'download=' . urlencode($TABLE) . '&field=' . urlencode($key) . $unique_idf;
 						}
 						if (!$link && $val !== null) { // link related items
@@ -457,9 +457,9 @@ if (!$columns && support("table")) {
 
 						$val = select_value($val, $link, $field, $text_length);
 						$id = h("val[$unique_idf][" . bracket_escape($key) . "]");
-						$value = $_POST["val"][$unique_idf][bracket_escape($key)];
-						$editable = !is_array($row[$key]) && is_utf8($val) && $rows[$n][$key] == $row[$key] && !$functions[$key] && !$field["generated"];
-						$text = preg_match('~text|lob~', $field["type"]);
+						$value = $_POST["val"][$unique_idf][bracket_escape($key)] ?? null;
+						$editable = !is_array($row[$key]) && is_utf8($val) && $rows[$n][$key] == $row[$key] && !$functions[$key] && !($field["generated"] ?? false);
+						$text = $field && preg_match('~text|lob~', $field["type"]);
 						echo "<td id='$id'";
 						if (($_GET["modify"] && $editable) || $value !== null) {
 							$h_value = h($value !== null ? $value : $row[$key]);
