@@ -411,7 +411,7 @@ class Adminer {
 	 * @param array $select result of selectColumnsProcess()[0]
 	 * @param array $columns selectable columns
 	 */
-	function selectColumnsPrint($select, $columns) {
+	function selectColumnsPrint(array $select, array $columns) {
 		global $functions, $grouping;
 
 		print_fieldset("select", lang('Select'), $select, true);
@@ -459,7 +459,7 @@ class Adminer {
 	 * @param array $where result of selectSearchProcess()
 	 * @param array $columns selectable columns
 	 */
-	function selectSearchPrint($where, $columns, $indexes) {
+	function selectSearchPrint(array $where, array $columns, array $indexes) {
 		print_fieldset("search", lang('Search'), $where);
 
 		foreach ($indexes as $i => $index) {
@@ -501,7 +501,7 @@ class Adminer {
 	 * @param array $order result of selectOrderProcess()
 	 * @param array $columns selectable columns
 	 */
-	function selectOrderPrint($order, $columns, $indexes) {
+	function selectOrderPrint(array $order, array $columns, array $indexes) {
 		print_fieldset("sort", lang('Sort'), $order, true);
 
 		$_GET["order"][""] = "";
@@ -1259,7 +1259,7 @@ bodyLoad('<?php echo (is_object($connection) ? preg_replace('~^(\d\.?\d).*~s', '
 	 * @param array $tables Result of table_status('', true)
 	 * @return null
 	 */
-	function tablesPrint($tables) {
+	function tablesPrint(array $tables) {
 		echo "<ul id='tables'>" . script("mixin(gid('tables'), {onmouseover: menuOver, onmouseout: menuOut});");
 
 		foreach ($tables as $table => $status) {
