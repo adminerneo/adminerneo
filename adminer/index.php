@@ -1,4 +1,5 @@
 <?php
+
 /**
  * AdminNeo - Database management in a single PHP file
  *
@@ -12,6 +13,8 @@
  * @license Apache License, Version 2.0 (https://www.apache.org/licenses/LICENSE-2.0)
  * @license GNU General Public License, version 2 (https://www.gnu.org/licenses/gpl-2.0.html)
  */
+
+namespace Adminer;
 
 include "./include/bootstrap.inc.php";
 include "./include/tmpfile.inc.php";
