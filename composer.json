@@ -42,6 +42,7 @@
     "suggest": {
         "ext-openssl": "Allows secure encryption of login information",
         "ext-zlib": "Allows to export databases in compressed gzip (.gz) files",
+        "ext-bz2": "Allows to export databases in compressed bzip2 (.bz2) files",
         "ext-suhosin": "Enhace CSRF protection",
         "ext-mysqli": "Allows access to MySQL database",
         "ext-mysql": "Allows access to MySQL database (old driver)",
@@ -49,7 +50,6 @@
         "ext-mongo": "Allows access to MongoDB database (old extension)",
         "ext-mongodb": "Allows access to MongoDB database",
         "ext-sqlsrv": "Allows access to MS SQ database",
-        "ext-mssql": "Allows access to MS SQL database (old extension)",
         "ext-oci8": "Allows access to Oracle database",
         "ext-interbase": "Allows access to Firebird database",
         "ext-simplexml": "Allows access to SimpleDB database",

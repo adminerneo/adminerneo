@@ -1,5 +1,9 @@
 <?php
 
+namespace Adminer;
+
+use Exception;
+
 const ENCRYPTION_ALGO = 'aes-256-cbc';
 
 /**

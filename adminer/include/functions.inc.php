@@ -1,6 +1,8 @@
 <?php
 // This file is used both in Adminer and Adminer Editor.
 
+namespace Adminer;
+
 /** Get database connection
 * @return Min_DB
 */
@@ -674,7 +676,7 @@ function queries($query) {
 * @param callback
 * @return bool
 */
-function apply_queries($query, $tables, $escape = 'table') {
+function apply_queries($query, $tables, $escape = 'Adminer\table') {
 	foreach ($tables as $table) {
 		if (!queries("$query " . $escape($table))) {
 			return false;

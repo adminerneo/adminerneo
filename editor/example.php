@@ -1,4 +1,8 @@
 <?php
+
+use Adminer\Adminer;
+use function Adminer\h;
+
 function adminer_object() {
 
 	class AdminerCds extends Adminer {

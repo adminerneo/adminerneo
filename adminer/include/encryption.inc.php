@@ -1,5 +1,7 @@
 <?php
 
+namespace Adminer;
+
 /**
  * Encrypts a string using AES-256-CBC.
  *

@@ -1,5 +1,7 @@
 <?php
 
+namespace Adminer;
+
 error_reporting(6135); // errors and warnings
 set_error_handler(function ($errno, $errstr) {
 	return (bool)preg_match('~^Undefined array key~', $errstr);

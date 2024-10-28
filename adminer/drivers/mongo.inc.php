@@ -1,4 +1,10 @@
 <?php
+
+namespace Adminer;
+
+use Exception;
+use MongoClient;
+
 $drivers["mongo"] = "MongoDB (alpha)";
 
 if (isset($_GET["mongo"])) {
