@@ -33,7 +33,7 @@ if (!$row) {
 <form action="" method="post">
 <p><?php
 if ($jush != "sqlite") {
-	echo lang('Name') . ': <input name="name" value="' . h($row["name"]) . '" data-maxlength="64" autocapitalize="off"> ';
+	echo lang('Name') . ': <input name="name" value="' . h($row["name"]) . '" class="input" data-maxlength="64" autocapitalize="off"> ';
 }
 echo doc_link(array(
 	'sql' => "create-table-check-constraints.html",
@@ -44,7 +44,7 @@ echo doc_link(array(
 ), "?");
 ?>
 <p><?php textarea("clause", $row["clause"]); ?>
-<p><input type="submit" value="<?php echo lang('Save'); ?>">
-<?php if ($name != "") { ?><input type="submit" name="drop" value="<?php echo lang('Drop'); ?>"><?php echo confirm(lang('Drop %s?', $name)); ?><?php } ?>
+<p><input type="submit" class='button default' value="<?php echo lang('Save'); ?>">
+<?php if ($name != "") { ?><input type="submit" class='button' name="drop" value="<?php echo lang('Drop'); ?>"><?php echo confirm(lang('Drop %s?', $name)); ?><?php } ?>
 <input type="hidden" name="token" value="<?php echo $token; ?>">
 </form>
