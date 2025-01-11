@@ -312,7 +312,7 @@ WHERE datallowconn = TRUE AND has_database_privilege(datname, 'CONNECT')
 ORDER BY datname");
 	}
 
-	function limit($query, $where, $limit, $offset = 0, $separator = " ") {
+	function limit($query, $where, ?int $limit, $offset = 0, $separator = " ") {
 		return " $query$where" . ($limit !== null ? $separator . "LIMIT $limit" . ($offset ? " OFFSET $offset" : "") : "");
 	}
 
