@@ -10,7 +10,7 @@ if ($_POST && !$error && !$_POST["add"] && !$_POST["change"] && !$_POST["change-
 	if (!$_POST["drop"]) {
 		$row["source"] = array_filter($row["source"], 'strlen');
 		ksort($row["source"]); // enforce input order
-		$target = array();
+		$target = [];
 		foreach ($row["source"] as $key => $val) {
 			$target[$key] = $row["target"][$key];
 		}
@@ -18,7 +18,7 @@ if ($_POST && !$error && !$_POST["add"] && !$_POST["change"] && !$_POST["change-
 	}
 
 	if ($jush == "sqlite") {
-		$result = recreate_table($TABLE, $TABLE, array(), array(), array(" $name" => ($row["drop"] ? "" : " " . format_foreign_key($row))));
+		$result = recreate_table($TABLE, $TABLE, [], [], [" $name" => ($row["drop"] ? "" : " " . format_foreign_key($row))]);
 	} else {
 		$alter = "ALTER TABLE " . table($TABLE);
 		$result = ($name == "" || queries("$alter DROP " . ($jush == "sql" ? "FOREIGN KEY " : "CONSTRAINT ") . idf_escape($name)));
@@ -36,14 +36,14 @@ if ($_POST && !$error && !$_POST["add"] && !$_POST["change"] && !$_POST["change-
 	}
 }
 
-page_header(lang('Foreign key'), $error, array("table" => $TABLE), h($TABLE));
+page_header(lang('Foreign key'), $error, ["table" => $TABLE], h($TABLE));
 
 if ($_POST) {
 	ksort($row["source"]);
 	if ($_POST["add"]) {
 		$row["source"][] = "";
 	} elseif ($_POST["change"] || $_POST["change-js"]) {
-		$row["target"] = array();
+		$row["target"] = [];
 	}
 } elseif ($name != "") {
 	$foreign_keys = foreign_keys($TABLE);
@@ -51,7 +51,7 @@ if ($_POST) {
 	$row["source"][] = "";
 } else {
 	$row["table"] = $TABLE;
-	$row["source"] = array("");
+	$row["source"] = [""];
 }
 ?>
 
@@ -78,7 +78,7 @@ if (support("scheme")) {
 		set_schema($orig_schema);
 	}
 } elseif ($jush != "sqlite") {
-	$dbs = array();
+	$dbs = [];
 	foreach ($adminer->databases() as $db) {
 		if (!information_schema($db)) {
 			$dbs[] = $db;
@@ -95,22 +95,22 @@ if (support("scheme")) {
 $j = 0;
 foreach ($row["source"] as $key => $val) {
 	echo "<tr>";
-	echo "<td>" . html_select("source[" . (+$key) . "]", array(-1 => "") + $source, $val, ($j == count($row["source"]) - 1 ? "foreignAddRow.call(this);" : 1), "label-source");
+	echo "<td>" . html_select("source[" . (+$key) . "]", [-1 => ""] + $source, $val, ($j == count($row["source"]) - 1 ? "foreignAddRow.call(this);" : 1), "label-source");
 	echo "<td>" . html_select("target[" . (+$key) . "]", $target, $row["target"][$key] ?? null, 1, "label-target");
 	$j++;
 }
 ?>
 </table>
 <p>
-<?php echo lang('ON DELETE'); ?>: <?php echo html_select("on_delete", array(-1 => "") + explode("|", $on_actions), $row["on_delete"]); ?>
- <?php echo lang('ON UPDATE'); ?>: <?php echo html_select("on_update", array(-1 => "") + explode("|", $on_actions), $row["on_update"]); ?>
-<?php echo doc_link(array(
+<?php echo lang('ON DELETE'); ?>: <?php echo html_select("on_delete", [-1 => ""] + explode("|", $on_actions), $row["on_delete"]); ?>
+ <?php echo lang('ON UPDATE'); ?>: <?php echo html_select("on_update", [-1 => ""] + explode("|", $on_actions), $row["on_update"]); ?>
+<?php echo doc_link([
 	'sql' => "innodb-foreign-key-constraints.html",
 	'mariadb' => "foreign-keys/",
 	'pgsql' => "sql-createtable.html#SQL-CREATETABLE-REFERENCES",
 	'mssql' => "t-sql/statements/create-table-transact-sql",
 	'oracle' => "SQLRF01111",
-)); ?>
+]); ?>
 <p>
 <input type="submit" class="button" value="<?php echo lang('Save'); ?>">
 <noscript><p><input type="submit" class="button" name="add" value="<?php echo lang('Add column'); ?>"></noscript>

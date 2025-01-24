@@ -2,7 +2,7 @@
 
 namespace Adminer;
 
-$translations = array(
+$translations = [
 	'Home' => null,
 	'Login' => 'შესვლა',
 	'Logout successful.' => 'გამოხვედით სისტემიდან.',
@@ -326,4 +326,4 @@ $translations = array(
 	'Alter check' => null,
 	'Create check' => null,
 	'Checks' => null,
-);
+];

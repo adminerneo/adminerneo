@@ -2,7 +2,7 @@
 
 namespace Adminer;
 
-$translations = array(
+$translations = [
 	// label for database system selection (MySQL, SQLite, ...)
 	'Home' => null,
 	'System' => '資料庫系統',
@@ -371,4 +371,4 @@ $translations = array(
 	'Alter check' => null,
 	'Create check' => null,
 	'Checks' => null,
-);
+];

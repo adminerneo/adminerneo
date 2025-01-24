@@ -35,13 +35,13 @@ if (!$row) {
 if ($jush != "sqlite") {
 	echo lang('Name') . ': <input name="name" value="' . h($row["name"]) . '" class="input" data-maxlength="64" autocapitalize="off"> ';
 }
-echo doc_link(array(
+echo doc_link([
 	'sql' => "create-table-check-constraints.html",
 	'mariadb' => "constraint/",
 	'pgsql' => "ddl-constraints.html#DDL-CONSTRAINTS-CHECK-CONSTRAINTS",
 	'mssql' => "relational-databases/tables/create-check-constraints",
 	'sqlite' => "lang_createtable.html#check_constraints",
-), "?");
+], "?");
 ?>
 <p><?php textarea("clause", $row["clause"]); ?>
 <p><input type="submit" class='button default' value="<?php echo lang('Save'); ?>">

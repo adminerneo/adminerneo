@@ -2,7 +2,7 @@
 
 namespace Adminer;
 
-$translations = array(
+$translations = [
 	'Home' => null,
 	'Login' => 'התחברות',
 	'Logout successful.' => 'ההתחברות הצליחה',
@@ -326,4 +326,4 @@ $translations = array(
 	'Alter check' => null,
 	'Create check' => null,
 	'Checks' => null,
-);
+];
