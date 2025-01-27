@@ -60,7 +60,7 @@ function create_adminer(): Adminer
 	}
 
 	return new CdsEditor([
-		"theme" => "default-green",
+		"colorVariant" => "green",
 	]);
 }
 
