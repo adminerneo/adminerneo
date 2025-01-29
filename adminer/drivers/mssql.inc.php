@@ -10,7 +10,7 @@ use stdClass;
 * @author Jakub Vrana
 */
 
-$drivers["mssql"] = "MS SQL";
+add_driver("mssql", "MS SQL");
 
 if (isset($_GET["mssql"])) {
 	define("DRIVER", "mssql");
