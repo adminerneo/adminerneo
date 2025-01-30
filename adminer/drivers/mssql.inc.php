@@ -725,6 +725,7 @@ WHERE sys1.xtype = 'TR' AND sys2.name = " . q($table)
 					"char|text" => "+",
 				]
 			],
+			"system_schemas" => ["INFORMATION_SCHEMA", "guest", "sys", "db_*"],
 		];
 	}
 }

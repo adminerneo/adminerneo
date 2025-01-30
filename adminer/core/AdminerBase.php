@@ -7,6 +7,12 @@ abstract class AdminerBase
 	/** @var Config */
 	protected $config;
 
+	/** @var array */
+	private $systemDatabases;
+
+	/** @var array */
+	private $systemSchemas;
+
 	public function __construct(array $config = [])
 	{
 		$this->config = new Config($config);
@@ -24,6 +30,12 @@ abstract class AdminerBase
 	public abstract function getLikeOperator(): ?string;
 
 	public abstract function getRegexpOperator(): ?string;
+
+	public function setSystemObjects(array $databases, array $schemas): void
+	{
+		$this->systemDatabases = $databases;
+		$this->systemSchemas = $schemas;
+	}
 
 	public abstract function name();
 
@@ -44,7 +56,7 @@ abstract class AdminerBase
 	 */
 	public function databases($flush = true): array
 	{
-		return $this->filterListWithWildcards(get_databases($flush), $this->config->getHiddenDatabases());
+		return $this->filterListWithWildcards(get_databases($flush), $this->config->getHiddenDatabases(), $this->systemDatabases);
 	}
 
 	/**
@@ -52,17 +64,23 @@ abstract class AdminerBase
 	 */
 	public function schemas(): array
 	{
-		return $this->filterListWithWildcards(schemas(), $this->config->getHiddenSchemas());
+		return $this->filterListWithWildcards(schemas(), $this->config->getHiddenSchemas(), $this->systemSchemas);
 	}
 
 	/**
 	 * @param string[] $values
 	 * @param string[] $hidingList
 	 */
-	private function filterListWithWildcards(array $values, array $hidingList): array
+	private function filterListWithWildcards(array $values, array $hidingList, array $systemObjects): array
 	{
 		if (!$values || !$hidingList) {
 			return $values;
+		}
+
+		$index = array_search("__system", $hidingList);
+		if ($index !== false) {
+			unset($hidingList[$index]);
+			$hidingList = array_merge($hidingList, $systemObjects);
 		}
 
 		array_walk($hidingList, function (&$value) {
