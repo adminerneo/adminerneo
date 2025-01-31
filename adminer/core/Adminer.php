@@ -37,7 +37,7 @@ class Adminer extends AdminerBase
 	* @return string HTML code
 	*/
 	function name() {
-		return "<a id='h1' href='" . h(HOME_URL) . "'>AdminNeo</a>";
+		return "<a id='h1' href='" . h(HOME_URL) . "'><svg role='img' class='logo'><desc>AdminNeo</desc><use href='" . link_files("logo.svg", ["images/logo.svg"]) . "#logo'/></svg></a>";
 	}
 
 	/** Connection parameters
@@ -1127,8 +1127,8 @@ class Adminer extends AdminerBase
 	<?php if ($missing != "auth"): ?>
 		<span class="version">
 			<?= h($VERSION); ?>
-			<a href="https://github.com/adminneo-org/adminneo/releases"<?= target_blank(); ?> id="version">
-				<?= ($this->config->isVersionVerificationEnabled() && $last_version && version_compare($VERSION, $last_version) < 0 ? h($last_version) : ""); ?>
+			<a id="version" href="https://github.com/adminneo-org/adminneo/releases"<?= target_blank(); ?> title="<?= h($last_version); ?>">
+				<?= ($this->config->isVersionVerificationEnabled() && $last_version && version_compare($VERSION, $last_version) < 0 ? icon_solo("asterisk") : ""); ?>
 			</a>
 		</span>
 		<?php
