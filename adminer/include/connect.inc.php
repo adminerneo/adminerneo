@@ -26,7 +26,6 @@ if (!(DB != "" ? $connection->select_db(DB) : isset($_GET["sql"]) || isset($_GET
 		echo "<p id='top-links' class='links'>\n";
 
 		$links = [
-			'database' => [lang('Create database'), "database-add"],
 			'privileges' => [lang('Privileges'), "users"],
 			'processlist' => [lang('Process list'), "list"],
 			'variables' => [lang('Variables'), "variable"],
@@ -88,6 +87,8 @@ if (!(DB != "" ? $connection->select_db(DB) : isset($_GET["sql"]) || isset($_GET
 			echo script("tableCheck();");
 		}
 	}
+
+	echo '<p class="links"><a href="' . h(ME) . 'database=">' . icon("database-add") . lang('Create database') . "</a>\n";
 
 	page_footer("db");
 	exit;
