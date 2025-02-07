@@ -61,7 +61,7 @@ if ($_GET["ns"] == "") {
 
 if ($adminer->homepage()) {
 	if ($_GET["ns"] === "") {
-		echo "<h3 id='schemas'>" . lang('Schemas') . "</h3>\n";
+		echo "<h2 id='schemas'>" . lang('Schemas') . "</h2>\n";
 		$schemas = $adminer->schemas();
 		if (!$schemas) {
 			echo "<p class='message'>" . lang('No schemas.') . "\n";
@@ -80,15 +80,15 @@ if ($adminer->homepage()) {
 
 		echo '<p class="links"><a href="' . h(ME) . 'scheme=">' . icon("database-add") . lang('Create schema') . "</a>\n";
 	} else {
-		echo "<h3 id='tables-views'>" . lang('Tables and views') . "</h3>\n";
+		echo "<h2 id='tables-views'>" . lang('Tables and views') . "</h2>\n";
 		$tables_list = tables_list();
 		if (!$tables_list) {
 			echo "<p class='message'>" . lang('No tables.') . "\n";
 		} else {
-			echo "<form action='' method='post'>\n";
+			echo "<form class='table-footer-parent' action='' method='post'>\n";
 			if (support("table")) {
 				echo "<div class='field-sets'>\n";
-				echo "<fieldset><legend>" . lang('Search data in tables') . " <span id='selected2'></span></legend><div>";
+				echo "<fieldset><legend>" . lang('Search data in tables') . " <span id='selected2'></span></legend><div class='fieldset-content'>";
 				echo "<input type='search' class='input' name='query' value='" . h($_POST["query"]) . "'>";
 				echo script("qsl('input').onkeydown = partialArg(bodyKeydown, 'search');", "");
 				echo " <input type='submit' class='button' name='search' value='" . lang('Search') . "'>\n";
@@ -109,7 +109,7 @@ if ($adminer->homepage()) {
 			echo script("mixin(qsl('table'), {onclick: tableClick, ondblclick: partialArg(tableClick, true)});");
 
 			echo '<thead><tr class="wrap">';
-			echo '<td><input id="check-all" type="checkbox" class="input jsonly">' . script("gid('check-all').onclick = partial(formCheck, /^(tables|views)\[/);", "");
+			echo '<td class="actions"><input id="check-all" type="checkbox" class="input jsonly">' . script("gid('check-all').onclick = partial(formCheck, /^(tables|views)\[/);", "");
 			echo '<th>' . lang('Table');
 			echo '<td>' . lang('Engine') . doc_link(['sql' => 'storage-engines.html']);
 			echo '<td>' . lang('Collation') . doc_link(['sql' => 'charset-charsets.html', 'mariadb' => 'supported-character-sets-and-collations/']);
@@ -126,7 +126,7 @@ if ($adminer->homepage()) {
 				$view = ($type !== null && !preg_match('~table|sequence~i', $type));
 				$id = h("Table-" . $name);
 
-				echo '<tr><td>' . checkbox(($view ? "views[]" : "tables[]"), $name, in_array($name, $tables_views, true), "", "", "", $id);
+				echo '<tr><td class="actions">' . checkbox(($view ? "views[]" : "tables[]"), $name, in_array($name, $tables_views, true), "", "", "", $id);
 
 				if (!$adminer->getConfig()->isSelectionPreferred() && (support("table") || support("indexes"))) {
 					$action = "table";
@@ -160,22 +160,27 @@ if ($adminer->homepage()) {
 				echo "\n";
 			}
 
-			echo "<tr><td><th>" . lang('%d in total', count($tables_list));
+			echo "<tfoot><tr>";
+			echo "<td><th>" . lang('%d in total', count($tables_list));
 			echo "<td>" . h($jush == "sql" ? $connection->result("SELECT @@default_storage_engine") : "");
 			echo "<td>" . h(db_collation(DB, collations()));
 			foreach (["Data_length", "Index_length", "Data_free"] as $key) {
 				echo "<td align='right' id='sum-$key'>";
 			}
-			echo "\n";
+			echo "<td></td><td></td>";
+			if (support("comment")) {
+				echo "<td></td>";
+			}
+			echo "</tr></tfoot>\n";
 
 			echo "</table>\n";
 			echo "</div>\n";
 
 			if (!information_schema(DB)) {
-				echo "<div class='footer'><div class='field-sets'>\n";
+				echo "<div class='table-footer'><div class='field-sets'>\n";
 				$vacuum = "<input type='submit' class='button' value='" . lang('Vacuum') . "'> " . help_script("VACUUM");
 				$optimize = "<input type='submit' class='button' name='optimize' value='" . lang('Optimize') . "'> " . help_script($jush == "sql" ? "OPTIMIZE TABLE" : "VACUUM OPTIMIZE");
-				echo "<fieldset><legend>" . lang('Selected') . " <span id='selected'></span></legend><div>"
+				echo "<fieldset><legend>" . lang('Selected') . " <span id='selected'></span></legend><div class='fieldset-content'>"
 				. ($jush == "sqlite" ? $vacuum . "<input type='submit' class='button' name='check' value='" . lang('Check') . "'> " . help_script("PRAGMA integrity_check")
 				: ($jush == "pgsql" ? $vacuum . $optimize
 				: ($jush == "sql" ? "<input type='submit' class='button' value='" . lang('Analyze') . "'> " . help_script("ANALYZE TABLE")
@@ -210,7 +215,7 @@ if ($adminer->homepage()) {
 		}
 
 		if (support("routine")) {
-			echo "<h3 id='routines'>" . lang('Routines') . "</h3>\n";
+			echo "<h2 id='routines'>" . lang('Routines') . "</h2>\n";
 
 			$routines = routines();
 			if ($routines) {
@@ -253,7 +258,7 @@ if ($adminer->homepage()) {
 		}
 
 		if (support("sequence")) {
-			echo "<h3 id='sequences'>" . lang('Sequences') . "</h3>\n";
+			echo "<h2 id='sequences'>" . lang('Sequences') . "</h2>\n";
 			$sequences = get_vals("SELECT sequence_name FROM information_schema.sequences WHERE sequence_schema = current_schema() ORDER BY sequence_name");
 			if ($sequences) {
 				echo "<table>\n",
@@ -271,7 +276,7 @@ if ($adminer->homepage()) {
 		}
 
 		if (support("type")) {
-			echo "<h3 id='user-types'>" . lang('User types') . "</h3>\n";
+			echo "<h2 id='user-types'>" . lang('User types') . "</h2>\n";
 			$user_types = types();
 			if ($user_types) {
 				echo "<table>\n",
@@ -289,7 +294,7 @@ if ($adminer->homepage()) {
 		}
 
 		if (support("event")) {
-			echo "<h3 id='events'>" . lang('Events') . "</h3>\n";
+			echo "<h2 id='events'>" . lang('Events') . "</h2>\n";
 			$rows = get_rows("SHOW EVENTS");
 			if ($rows) {
 				echo "<table>\n";
