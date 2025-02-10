@@ -357,7 +357,7 @@ class Adminer extends AdminerBase
 		echo "<table class='nowrap'>\n";
 		echo "<thead><tr><th>" . lang('Column') . "<td>" . lang('Type') . (support("comment") ? "<td>" . lang('Comment') : "") . "</thead>\n";
 		foreach ($fields as $field) {
-			echo "<tr" . odd() . "><th>" . h($field["field"]);
+			echo "<tr><th>" . h($field["field"]);
 			$type = h($field["full_type"]);
 			echo "<td><span title='" . h($field["collation"]) . "'>"
 				. (in_array($type, (array) $structured_types[lang('User types')]) ? "<a href='" . h(ME . 'type=' . urlencode($type)) . "'>$type</a>" : $type)

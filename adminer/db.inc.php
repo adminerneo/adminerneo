@@ -69,14 +69,10 @@ if ($adminer->homepage()) {
 			// TODO: Checkboxes for batch dropping of schemas.
 			echo "<div class='scrollable'>\n",
 				"<table class='nowrap'>\n",
-				'<thead><tr class="wrap">',
-				'<th>', lang('Schema'), "</th>",
-				'</tr></thead>';
+				'<thead><tr class="wrap"><th>', lang('Schema'), "</th></tr></thead>";
 
 			foreach ($schemas as $name) {
-				echo "<tr", odd(), ">",
-					"<th><a href='", h(ME), "ns=" . urlencode($name), "' title='", lang('Show schema'), "'>" . h($name) . "</a></th>",
-					"</tr>";
+				echo "<tr><th><a href='", h(ME), "ns=" . urlencode($name), "' title='", lang('Show schema'), "'>" . h($name) . "</a></th></tr>";
 			}
 
 			echo '</table></div>';
@@ -130,7 +126,7 @@ if ($adminer->homepage()) {
 				$view = ($type !== null && !preg_match('~table|sequence~i', $type));
 				$id = h("Table-" . $name);
 
-				echo '<tr' . odd() . '><td>' . checkbox(($view ? "views[]" : "tables[]"), $name, in_array($name, $tables_views, true), "", "", "", $id);
+				echo '<tr><td>' . checkbox(($view ? "views[]" : "tables[]"), $name, in_array($name, $tables_views, true), "", "", "", $id);
 
 				if (!$adminer->getConfig()->isSelectionPreferred() && (support("table") || support("indexes"))) {
 					$action = "table";
@@ -229,12 +225,11 @@ if ($adminer->homepage()) {
 				echo "<td></td>",
 					"</tr></thead>\n";
 
-				odd('');
 				foreach ($routines as $row) {
 					// not computed on the pages to be able to print the header first
 					$name = ($row["SPECIFIC_NAME"] == $row["ROUTINE_NAME"] ? "" : "&name=" . urlencode($row["ROUTINE_NAME"]));
 
-					echo '<tr', odd(), '>',
+					echo '<tr>',
 						'<th><a href="', h(ME . ($row["ROUTINE_TYPE"] != "PROCEDURE" ? 'callf=' : 'call=') . urlencode($row["SPECIFIC_NAME"]) . $name), '">', h($row["ROUTINE_NAME"]), '</a></th>',
 						'<td>', h($row["ROUTINE_TYPE"]), '</td>',
 						'<td>', h($row["DTD_IDENTIFIER"]), '</td>';
@@ -264,9 +259,8 @@ if ($adminer->homepage()) {
 				echo "<table>\n",
 					"<thead><tr><th>", lang('Name'), "</th><td></td></tr></thead>\n";
 
-				odd('');
 				foreach ($sequences as $val) {
-					echo "<tr", odd(), ">",
+					echo "<tr>",
 						"<th>", h($val), "</th>",
 						"<td><a href='", h(ME), "sequence=", urlencode($val), "'>", lang('Alter'), "</a></td>\n";
 				}
@@ -283,9 +277,8 @@ if ($adminer->homepage()) {
 				echo "<table>\n",
 					"<thead><tr><th>", lang('Name'), "</th><td></td></tr></thead>\n";
 
-				odd('');
 				foreach ($user_types as $val) {
-					echo "<tr", odd(), ">",
+					echo "<tr>",
 						"<th>", h($val), "</th>",
 						"<td><a href='", h(ME), "type=", urlencode($val), "'>", lang('Alter'), "</a></td>\n";
 				}
