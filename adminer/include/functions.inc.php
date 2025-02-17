@@ -663,7 +663,7 @@ function query_redirect($query, $location, $message, $redirect = true, $execute 
 		$sql = $adminer->messageQuery($query, $time, $failed);
 	}
 	if ($failed) {
-		$error = error() . $sql . script("messagesPrint();");
+		$error = error() . $sql . script("initToggles();");
 		return false;
 	}
 	if ($redirect) {
