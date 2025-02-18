@@ -76,7 +76,7 @@ echo ($_POST["add_x"] || strpos($name, "\n")
 	'mssql' => "relational-databases/system-functions/sys-fn-helpcollations-transact-sql",
 ]) : "");
 ?>
-<input type="submit" class="button" value="<?php echo lang('Save'); ?>">
+<input type="submit" class="button default" value="<?php echo lang('Save'); ?>">
 <?php
 if (DB != "") {
 	echo "<input type='submit' class='button' name='drop' value='" . lang('Drop') . "'>" . confirm(lang('Drop %s?', DB)) . "\n";

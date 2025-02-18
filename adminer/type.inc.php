@@ -42,7 +42,7 @@ if ($TYPE != "") {
 		'pgsql' => "datatype-enum.html",
 	], "?");
 	textarea("as", $row["as"]);
-	echo "<p><input type='submit' class='button' value='" . lang('Save') . "'></p>\n";
+	echo "<p><input type='submit' class='button default' value='" . lang('Save') . "'></p>\n";
 }
 ?>
 <input type="hidden" name="token" value="<?php echo $token; ?>">

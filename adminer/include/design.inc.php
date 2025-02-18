@@ -278,7 +278,5 @@ function page_messages($error) {
  */
 function page_footer()
 {
-	echo "</div>"; // content
-
-	echo script("setupSubmitHighlight(document);");
+	echo "</div>\n"; // content
 }
