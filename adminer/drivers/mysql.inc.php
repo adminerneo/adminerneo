@@ -393,6 +393,12 @@ if (isset($_GET["mysql"])) {
 				$edit_functions[0]['uuid'] = 'uuid';
 			}
 
+			if (min_version(9, '', $connection)) {
+				$structured_types[lang('Numbers')][] = "vector";
+				$types["vector"] = 16383;
+				$edit_functions[0]['vector'] = 'string_to_vector';
+			}
+
 			return $connection;
 		}
 		$return = $connection->error;
