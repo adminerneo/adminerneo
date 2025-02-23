@@ -1116,13 +1116,16 @@ if (isset($_GET["mysql"])) {
 		return $strictMode;
 	}
 
+	/** Check if C-style escapes are supported
+	 * @return bool
+	 */
 	function is_c_style_escapes() {
-		static $c_style = null;
-
+		global $connection;
+		static $c_style;
 		if ($c_style === null) {
-			$c_style = strpos(get_key_vals("SHOW VARIABLES LIKE 'sql_mode'")["sql_mode"], 'NO_BACKSLASH_ESCAPES') === false;
+			$sql_mode = $connection->result("SHOW VARIABLES LIKE 'sql_mode'", 1);
+			$c_style = (strpos($sql_mode, 'NO_BACKSLASH_ESCAPES') === false);
 		}
-
 		return $c_style;
 	}
 
