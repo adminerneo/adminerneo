@@ -42,10 +42,7 @@ function xxtea_mx($z, $y, $sum, $k) {
 * @param string
 * @return string binary cipher
 */
-function encrypt_string($str, $key) {
-	if ($str == "") {
-		return "";
-	}
+function xxtea_encrypt_string($str, $key) {
 	$key = array_values(unpack("V*", pack("H*", md5($key))));
 	$v = str2long($str, true);
 	$n = count($v) - 1;
@@ -75,13 +72,7 @@ function encrypt_string($str, $key) {
 * @param string
 * @return string plain-text password
 */
-function decrypt_string($str, $key) {
-	if ($str == "") {
-		return "";
-	}
-	if (!$key) {
-		return false;
-	}
+function xxtea_decrypt_string($str, $key) {
 	$key = array_values(unpack("V*", pack("H*", md5($key))));
 	$v = str2long($str, false);
 	$n = count($v) - 1;

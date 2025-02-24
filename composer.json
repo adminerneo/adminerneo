@@ -36,6 +36,7 @@
         "vrana/jsshrink": "@dev"
     },
     "suggest": {
+        "ext-openssl": "Allows secure encryption of login information",
         "ext-zlib": "Allows to export databases in compressed gzip (.gz) files",
         "ext-suhosin": "Enhace CSRF protection",
         "ext-mysqli": "Allows access to MySQL database",

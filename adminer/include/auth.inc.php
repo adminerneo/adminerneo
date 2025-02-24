@@ -130,7 +130,8 @@ if ($auth) {
 	if ($auth["permanent"]) {
 		$key = base64_encode($vendor) . "-" . base64_encode($server) . "-" . base64_encode($username) . "-" . base64_encode($db);
 		$private = $adminer->permanentLogin(true);
-		$permanent[$key] = "$key:" . base64_encode($private ? encrypt_string($password, $private) : "");
+		$encrypted_password = $private ? encrypt_string($password, $private) : false;
+		$permanent[$key] = "$key:" . base64_encode($encrypted_password ?: "");
 		cookie("adminer_permanent", implode(" ", $permanent));
 	}
 	if (count($_POST) == 1 // 1 - auth
