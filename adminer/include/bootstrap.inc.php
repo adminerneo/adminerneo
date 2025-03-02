@@ -160,6 +160,6 @@ define("HOME_URL", substr(preg_replace('~\b(username|db|ns)=[^&]*&~', '', ME), 0
 include __DIR__ . "/version.inc.php";
 include __DIR__ . "/design.inc.php";
 include __DIR__ . "/xxtea.inc.php";
-include __DIR__ . "/aes-cbc.inc.php";
+include __DIR__ . "/aes-gcm.inc.php";
 include __DIR__ . "/encryption.inc.php";
 include __DIR__ . "/auth.inc.php";

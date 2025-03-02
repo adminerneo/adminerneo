@@ -41,13 +41,8 @@ function decrypt_string($data, $key)
 	}
 
 	if (extension_loaded('openssl')) {
-		$text = aes_decrypt_string($data, $key);
-
-		// Return only success and use XXTEA as a fallback to keep users logged.
-		if ($text !== false) {
-			return $text;
-		}
+		return aes_decrypt_string($data, $key);
+	} else {
+		return xxtea_decrypt_string($data, $key);
 	}
-
-	return xxtea_decrypt_string($data, $key);
 }

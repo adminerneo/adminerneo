@@ -4,7 +4,8 @@ namespace Adminer;
 
 use Exception;
 
-const ENCRYPTION_ALGO = 'aes-256-cbc';
+const ENCRYPTION_ALGO = 'aes-256-gcm';
+const ENCRYPTION_TAG_LENGTH = 16;
 
 /**
  * Generates a secure IV compatible with PHP 5 and PHP 7+.
@@ -52,15 +53,12 @@ function aes_encrypt_string($plaintext, $key)
 	$iv = generate_iv(openssl_cipher_iv_length(ENCRYPTION_ALGO) ?: 16);
 
 	// Encrypts the text using AES-256-CBC.
-	$ciphertext = openssl_encrypt($plaintext, ENCRYPTION_ALGO, $key, OPENSSL_RAW_DATA, $iv);
+	$ciphertext = openssl_encrypt($plaintext, ENCRYPTION_ALGO, $key, OPENSSL_RAW_DATA, $iv, $tag, "", ENCRYPTION_TAG_LENGTH);
 	if ($ciphertext === false) {
 		return false;
 	}
 
-	// Generates an HMAC using IV + ciphertext to ensure integrity.
-	$hmac = hash_hmac('sha512', $iv . $ciphertext, $key, true);
-
-	return $iv . $hmac . $ciphertext;
+	return $iv . $tag . $ciphertext;
 }
 
 /**
@@ -75,8 +73,8 @@ function aes_decrypt_string($data, $key)
 {
 	$ivLength = openssl_cipher_iv_length(ENCRYPTION_ALGO) ?: 16;
 
-	// IV (16) + HMAC (64) minimum
-	if ($data === false || strlen($data) < $ivLength + 64) {
+	// IV (16) + TAG (16) minimum
+	if ($data === false || strlen($data) < $ivLength + ENCRYPTION_TAG_LENGTH) {
 		return false;
 	}
 
@@ -84,21 +82,13 @@ function aes_decrypt_string($data, $key)
 
 	// Extracts IV (16 bytes), HMAC (64 bytes), and encrypted text.
 	$iv = substr($data, 0, $ivLength);
-	$hmac = substr($data, $ivLength, 64);
-	$ciphertext = substr($data, $ivLength + 64);
+	$tag = substr($data, $ivLength, ENCRYPTION_TAG_LENGTH);
+	$ciphertext = substr($data, $ivLength + ENCRYPTION_TAG_LENGTH);
 
-	if ($iv === false || $hmac === false || $ciphertext === false) {
-		return false;
-	}
-
-	// Verifies integrity using HMAC-SHA512.
-	$calculated_hmac = hash_hmac('sha512', $iv . $ciphertext, $key, true);
-
-	// Protection against timing attacks.
-	if (!hash_equals($hmac, $calculated_hmac)) {
+	if ($iv === false || $tag === false || $ciphertext === false) {
 		return false;
 	}
 
 	// Decrypts the text.
-	return openssl_decrypt($ciphertext, ENCRYPTION_ALGO, $key, OPENSSL_RAW_DATA, $iv);
+	return openssl_decrypt($ciphertext, ENCRYPTION_ALGO, $key, OPENSSL_RAW_DATA, $iv, $tag);
 }
