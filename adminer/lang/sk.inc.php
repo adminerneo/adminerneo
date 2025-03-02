@@ -288,7 +288,7 @@ $translations = [
 	'Default value' => 'Predvolená hodnota',
 	'Full table scan' => 'Prechod celej tabuľky',
 	'Too many unsuccessful logins, try again in %d minute(s).' => ['Príliš veľa pokusov o prihlásenie, skúste to znova za %d minutu.', 'Príliš veľa pokusov o prihlásenie, skúste to znova za %d minuty.', 'Príliš veľa pokusov o prihlásenie, skúste to znova za %d minút.'],
-	'Master password expired. <a href="https://www.adminer.org/en/extension/"%s>Implement</a> %s method to make it permanent.' => 'Platnosť hlavného hesla vypršala. <a href="https://www.adminer.org/cs/extension/"%s>Implementujte</a> metodu %s, aby platilo natrvalo.',
+	'Invalid permanent login, please login again.' => 'Neplatné trvalé prihlásenie, prihláste sa prosím znova.',
 	'The action will be performed after successful login with the same credentials.' => 'Akcia sa vykoná po úspešnom prihlásení s rovnakými prihlasovacími údajmi.',
 	'Connecting to privileged ports is not allowed.' => 'Pripojenie k privilegovaným portom nie je povolené.',
 	'There is a space in the input password which might be the cause.' =>  'V zadanom hesle je medzera, ktorá môže byť príčinou.',

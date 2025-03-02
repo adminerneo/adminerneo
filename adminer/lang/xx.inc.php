@@ -19,7 +19,7 @@ $translations = [
 	'AdminNeo does not support accessing a database without a password, <a href="https://www.adminer.org/en/password/"%s>more information</a>.' => 'Xx, <a href="https://www.adminer.org/en/password/"%s>xx</a>.',
 	'Database does not support password.' => 'Xx.',
 	'Too many unsuccessful logins, try again in %d minute(s).' => ['Xx %d.', 'Xx %d.'],
-	'Master password expired. <a href="https://www.adminer.org/en/extension/"%s>Implement</a> %s method to make it permanent.' => '<a href="https://www.adminer.org/en/extension/"%s>Xx</a> %s xx.',
+	'Invalid permanent login, please login again.' => 'Xx',
 	'Language' => 'Xx',
 	'Invalid CSRF token. Send the form again.' => 'Xx.',
 	'If you did not send this request from AdminNeo then close this page.' => 'Xx.',

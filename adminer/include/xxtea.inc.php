@@ -9,7 +9,7 @@ namespace Adminer;
  * @link http://www.coolcode.cn/?action=show&id=128
  */
 
-function int32($n)
+function int32($n): int
 {
 	while ($n >= 2147483648) {
 		$n -= 4294967296;
@@ -41,7 +41,7 @@ function str2long($s, $w)
 	return $v;
 }
 
-function xxtea_mx($z, $y, $sum, $k)
+function xxtea_mx($z, $y, $sum, $k): int
 {
 	return int32((($z >> 5 & 0x7FFFFFF) ^ $y << 2) + (($y >> 3 & 0x1FFFFFFF) ^ $z << 4)) ^ int32(($sum ^ $y) + ($k ^ $z));
 }
@@ -54,7 +54,7 @@ function xxtea_mx($z, $y, $sum, $k)
  *
  * @return string|false Encrypted binary data or false.
  */
-function xxtea_encrypt_string($plaintext, $key)
+function xxtea_encrypt_string(string $plaintext, string $key)
 {
 	$key = array_values(unpack("V*", pack("H*", md5($key))));
 
@@ -93,7 +93,7 @@ function xxtea_encrypt_string($plaintext, $key)
  *
  * @return string|false Decrypted plain text or false.
  */
-function xxtea_decrypt_string($data, $key)
+function xxtea_decrypt_string(string $data, string $key)
 {
 	$key = array_values(unpack("V*", pack("H*", md5($key))));
 

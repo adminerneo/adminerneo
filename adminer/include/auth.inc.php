@@ -188,7 +188,7 @@ if ($auth) {
 	foreach ($permanent as $key => $val) {
 		list(, $cipher) = explode(":", $val);
 		list($vendor, $server, $username, $db) = array_map('base64_decode', explode("-", $key));
-		set_password($vendor, $server, $username, decrypt_string(base64_decode($cipher), $private));
+		set_password($vendor, $server, $username, $private ? decrypt_string(base64_decode($cipher), $private) : false);
 		$_SESSION["db"][$vendor][$server][$username][$db] = true;
 	}
 }
@@ -222,7 +222,7 @@ function auth_error($error) {
 			$password = get_password();
 			if ($password !== null) {
 				if ($password === false) {
-					$error .= ($error ? '<br>' : '') . lang('Master password expired. <a href="https://www.adminer.org/en/extension/"%s>Implement</a> %s method to make it permanent.', target_blank(), '<code>permanentLogin()</code>');
+					$error = lang('Invalid permanent login, please login again.');
 				}
 				set_password(DRIVER, SERVER, $_GET["username"], null);
 			}

@@ -88,7 +88,16 @@ abstract class AdminerBase
 
 	public abstract function connectSsl();
 
-	public abstract function permanentLogin($create = false);
+	/**
+	 * Gets a private key used for permanent login.
+	 *
+	 * @return string|false Cryptic string which gets combined with password or false in case of an error.
+	 * @throws \Random\RandomException
+	 */
+	public function permanentLogin(bool $create = false)
+	{
+		return get_private_key($create);
+	}
 
 	public abstract function bruteForceKey();
 

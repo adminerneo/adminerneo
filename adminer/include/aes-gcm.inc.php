@@ -14,7 +14,7 @@ const ENCRYPTION_TAG_LENGTH = 16;
  *
  * @return string Generated IV.
  */
-function generate_iv($length)
+function generate_iv(int $length): string
 {
 	if (function_exists('random_bytes')) {
 		try {
@@ -30,11 +30,11 @@ function generate_iv($length)
 /**
  * Generates a 256-bit (32-byte) key from the SHA-512 hash.
  *
- * @param $key
+ * @param string $key
  *
  * @return string
  */
-function hash_key($key)
+function hash_key(string $key): string
 {
 	return substr(hash('sha512', $key, true), 0, 32);
 }
@@ -47,7 +47,7 @@ function hash_key($key)
  *
  * @return string|false Encrypted binary data or false.
  */
-function aes_encrypt_string($plaintext, $key)
+function aes_encrypt_string(string $plaintext, string $key)
 {
 	$key = hash_key($key);
 	$iv = generate_iv(openssl_cipher_iv_length(ENCRYPTION_ALGO) ?: 16);
@@ -69,21 +69,21 @@ function aes_encrypt_string($plaintext, $key)
  *
  * @return string|false Decrypted plain text or false.
  */
-function aes_decrypt_string($data, $key)
+function aes_decrypt_string(string $data, string $key)
 {
-	$ivLength = openssl_cipher_iv_length(ENCRYPTION_ALGO) ?: 16;
+	$iv_length = openssl_cipher_iv_length(ENCRYPTION_ALGO) ?: 16;
 
 	// IV (16) + TAG (16) minimum
-	if ($data === false || strlen($data) < $ivLength + ENCRYPTION_TAG_LENGTH) {
+	if ($data === false || strlen($data) < $iv_length + ENCRYPTION_TAG_LENGTH) {
 		return false;
 	}
 
 	$key = hash_key($key);
 
 	// Extracts IV (16 bytes), HMAC (64 bytes), and encrypted text.
-	$iv = substr($data, 0, $ivLength);
-	$tag = substr($data, $ivLength, ENCRYPTION_TAG_LENGTH);
-	$ciphertext = substr($data, $ivLength + ENCRYPTION_TAG_LENGTH);
+	$iv = substr($data, 0, $iv_length);
+	$tag = substr($data, $iv_length, ENCRYPTION_TAG_LENGTH);
+	$ciphertext = substr($data, $iv_length + ENCRYPTION_TAG_LENGTH);
 
 	if ($iv === false || $tag === false || $ciphertext === false) {
 		return false;

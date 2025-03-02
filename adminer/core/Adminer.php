@@ -46,18 +46,6 @@ class Adminer extends AdminerBase
 	function connectSsl() {
 	}
 
-	/**
-	 * Gets a private key used for permanent login.
-	 *
-	 * @param bool $create
-	 *
-	 * @return string|false Cryptic string which gets combined with password or false in case of an error.
-	 * @throws \Random\RandomException
-	 */
-	function permanentLogin($create = false) {
-		return get_private_key($create);
-	}
-
 	/** Return key used to group brute force attacks; behind a reverse proxy, you want to return the last part of X-Forwarded-For
 	* @return string
 	*/

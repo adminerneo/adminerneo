@@ -33,13 +33,6 @@ class Adminer extends AdminerBase
 	function connectSsl() {
 	}
 
-	/**
-	 * @throws \Random\RandomException
-	 */
-	function permanentLogin($create = false) {
-		return get_private_key($create);
-	}
-
 	function bruteForceKey() {
 		return $_SERVER["REMOTE_ADDR"];
 	}

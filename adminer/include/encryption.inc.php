@@ -10,7 +10,7 @@ namespace Adminer;
  *
  * @return string|false Encrypted binary data.
  */
-function encrypt_string($plaintext, $key)
+function encrypt_string(string $plaintext, string $key)
 {
 	if ($plaintext == "") {
 		return "";
@@ -31,13 +31,10 @@ function encrypt_string($plaintext, $key)
  *
  * @return string|false Decrypted plain text or false.
  */
-function decrypt_string($data, $key)
+function decrypt_string(string $data, string $key)
 {
 	if ($data == "") {
 		return "";
-	}
-	if (!$key) {
-		return false;
 	}
 
 	if (extension_loaded('openssl')) {

@@ -72,7 +72,7 @@ class Pluginer extends Adminer
 		return $this->applyPlugin(__FUNCTION__, func_get_args());
 	}
 
-	public function permanentLogin($create = false)
+	public function permanentLogin(bool $create = false)
 	{
 		return $this->applyPlugin(__FUNCTION__, func_get_args());
 	}
