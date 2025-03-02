@@ -97,6 +97,7 @@ class Adminer extends AdminerBase
 			"../vendor/vrana/jush/modules/jush-mssql.js",
 			"../vendor/vrana/jush/modules/jush-oracle.js",
 			"../vendor/vrana/jush/modules/jush-simpledb.js",
+			"../vendor/vrana/jush/modules/jush-js.js",
 		]));
 
 		return true;

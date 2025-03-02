@@ -47,7 +47,7 @@ tbody th, tbody td {
 	border-bottom: 1px solid var(--table-row-border);
 }
 
-tbody tr:last-child th, tbody tr:last-child td {
+tbody tr:last-child > th, tbody tr:last-child > td {
 	border-bottom: none;
 }
 
@@ -59,15 +59,15 @@ table.nowrap td, table.nowrap th {
 	white-space: pre;
 }
 
-table.checkable tbody tr:hover th, table.checkable tbody tr:hover td {
+table.checkable > tbody > tr:hover > th, table.checkable > tbody > tr:hover > td {
 	background: var(--list-hover);
 }
 
-table.checkable tbody tr.checked th, table.checkable tbody tr.checked td {
+table.checkable > tbody > tr.checked > th, table.checkable > tbody > tr.checked > td {
 	background: var(--list-active);
 }
 
-table.checkable tbody tr.checked:hover th, table.checkable tbody tr.checked:hover td {
+table.checkable > tbody > tr.checked:hover > th, table.checkable > tbody > tr.checked:hover > td {
 	background: var(--list-active-hover);
 }
 
@@ -76,20 +76,20 @@ table.box {
 	border-radius: var(--box-border-radius);
 }
 
-table.box th {
+table.box > tbody > tr > th {
 	background: var(--table-header-bg);
 	text-align: right;
 }
 
-table.box tr:first-child th, table.box tr:first-child td {
+table.box > tbody > tr:first-child > th, table.box > tbody > tr:first-child > td {
 	padding-top: 10px;
 }
 
-table.box tr:last-child th, table.box tr:last-child td {
+table.box > tbody > tr:last-child > th, table.box > tbody > tr:last-child > td {
 	padding-bottom: 10px;
 }
 
-table.box th, table.box td {
+table.box > tbody > tr > th, table.box > tbody > tr > td {
 	vertical-align: middle;
 	height: 34px;
 	border-bottom: none;

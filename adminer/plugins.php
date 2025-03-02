@@ -9,7 +9,7 @@ use Adminer\AdminerEditForeign;
 use Adminer\AdminerEnumOption;
 use Adminer\AdminerFileUpload;
 use Adminer\AdminerForeignSystem;
-use Adminer\AdminerJsonColumn;
+use Adminer\AdminerJsonPreview;
 use Adminer\AdminerSlugify;
 use Adminer\AdminerTranslation;
 use Adminer\Pluginer;
@@ -31,7 +31,7 @@ function create_adminer(): Pluginer
 		// new AdminerTinymce("../externals/tinymce/jscripts/tiny_mce/tiny_mce_dev.js"),
 		// new AdminerWymeditor(["../externals/wymeditor/src/jquery/jquery.js", "../externals/wymeditor/src/wymeditor/jquery.wymeditor.js", "../externals/wymeditor/src/wymeditor/jquery.wymeditor.explorer.js", "../externals/wymeditor/src/wymeditor/jquery.wymeditor.mozilla.js", "../externals/wymeditor/src/wymeditor/jquery.wymeditor.opera.js", "../externals/wymeditor/src/wymeditor/jquery.wymeditor.safari.js"]),
 		new AdminerFileUpload(""),
-		new AdminerJsonColumn,
+		new AdminerJsonPreview,
 		new AdminerSlugify,
 		new AdminerTranslation,
 		new AdminerForeignSystem,

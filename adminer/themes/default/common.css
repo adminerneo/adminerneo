@@ -171,12 +171,22 @@ p.nowrap {
 	margin-inline-end: 0;
 }
 
+.icon.chevron-right {
+	margin-inline-start: 0;
+	margin-inline-end: 0;
+	transform: rotate(-90deg);
+}
+
 .toggle .icon {
 	transition: transform .2s ease-in;
 }
 
 .toggle.opened .icon {
 	transform: rotate(-180deg);
+}
+
+.toggle.opened .icon.chevron-right {
+	transform: rotate(0);
 }
 
 #content {
