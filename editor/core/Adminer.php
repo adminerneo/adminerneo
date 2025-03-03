@@ -37,9 +37,6 @@ class Adminer extends AdminerBase
 		return $_SERVER["REMOTE_ADDR"];
 	}
 
-	function serverName($server) {
-	}
-
 	function database() {
 		global $connection;
 		if ($connection) {

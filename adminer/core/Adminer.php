@@ -53,14 +53,6 @@ class Adminer extends AdminerBase
 		return $_SERVER["REMOTE_ADDR"];
 	}
 
-	/** Get server name displayed in breadcrumbs
-	* @param string
-	* @return string HTML code or null
-	*/
-	function serverName($server) {
-		return $server != "" ? h($server) : lang('Server');
-	}
-
 	/** Identifier of selected database
 	* @return string
 	*/

@@ -22,9 +22,8 @@ if (!(DB != "" ? $connection->select_db(DB) : isset($_GET["sql"]) || isset($_GET
 			queries_redirect(substr(ME, 0, -1), lang('Databases have been dropped.'), drop_databases($_POST["db"]));
 		}
 
-		$title = h($drivers[DRIVER]) . ": ";
 		$server_name = $adminer->serverName(SERVER);
-		$title .= $server_name != "" ? h($server_name) : lang('Server');
+		$title = h($drivers[DRIVER]) . ": " . ($server_name != "" ? h($server_name) : lang('Server'));
 
 		page_header($title, $error, false, "db");
 		echo "<p id='top-links' class='links'>\n";

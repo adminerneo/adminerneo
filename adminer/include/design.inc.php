@@ -145,9 +145,10 @@ function page_header(string $title, string $error = "", $breadcrumb = [], ?strin
 		echo '<li><a href="' . h(HOME_URL) . '" title="', lang('Home'), '">', icon_solo("home"), '</a></li>';
 
 		$server_name = $adminer->serverName(SERVER);
+		$server_name = $server_name != "" ? h($server_name) : lang('Server');
 
 		if ($breadcrumb === false) {
-			echo "<li>", h($server_name), "</li>";
+			echo "<li>$server_name</li>";
 		} else {
 			$link = substr(preg_replace('~\b(db|ns)=[^&]*&~', '', ME), 0, -1);
 			echo "<li><a href='" . h($link) . "' accesskey='1' title='Alt+Shift+1'>$server_name</a></li>";

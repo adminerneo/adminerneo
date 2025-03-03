@@ -101,7 +101,13 @@ abstract class AdminerBase
 
 	public abstract function bruteForceKey();
 
-	public abstract function serverName($server);
+	/**
+	 * Returns server name displayed in breadcrumbs. Can be empty string.
+	 */
+	function serverName(string $server): string
+	{
+		return $server;
+	}
 
 	public abstract function database();
 
