@@ -246,7 +246,7 @@ class Adminer extends AdminerBase
 			$return .= "<a href='" . h(ME) . "sql=" . urlencode($query) . "'>" . icon("edit") . lang('Edit') . "</a>";
 		}
         if ($warnings) {
-			$return .= "<a href='#warnings' class='toggle'>" . lang('Warnings') . icon("chevron-down", "chevron") . "</a>";
+			$return .= "<a href='#warnings' class='toggle'>" . lang('Warnings') . icon_chevron_down() . "</a>";
         }
         $return .= " <span class='time'>(" . format_time($start) . ")</span>";
 		$return .= "</p>\n";
@@ -749,9 +749,9 @@ class Adminer extends AdminerBase
 
 		$return = " ";
 		if ($warnings) {
-			$return .= "<a href='#$warningsId' class='toggle'>" . lang('Warnings') . icon("chevron-down", "chevron") . "</a>, ";
+			$return .= "<a href='#$warningsId' class='toggle'>" . lang('Warnings') . icon_chevron_down() . "</a>, ";
 		}
-		$return .= "<a href='#$sqlId' class='toggle'>" . lang('SQL command') . icon("chevron-down", "chevron") . "</a>";
+		$return .= "<a href='#$sqlId' class='toggle'>" . lang('SQL command') . icon_chevron_down() . "</a>";
 		$return .= " <span class='time'>" . @date("H:i:s") . "</span>\n"; // @ - time zone may be not set
 
 		if ($warnings) {

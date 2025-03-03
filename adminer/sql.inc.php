@@ -147,43 +147,45 @@ if (!$error && $_POST) {
 
 								if ($connection->error) {
 									echo ($_POST["only_errors"] ? $print : "");
-									echo "<p class='error'>" . lang('Error in query') . (!empty($connection->errno) ? " ($connection->errno)" : "") . ": " . error() . "\n";
+									echo "<p class='error'>", lang('Error in query'), (!empty($connection->errno) ? " ($connection->errno)" : ""), ": ", error() . "</p>\n";
+
 									$errors[] = " <a href='#sql-$commands'>$commands</a>";
 									if ($_POST["error_stops"]) {
 										break 2;
 									}
-
 								} else {
-									$time = " <span class='time'>(" . format_time($start) . ")</span>"
-										. (strlen($q) < 1000 ? " <a href='" . h(ME) . "sql=" . urlencode(trim($q)) . "'>" . icon("edit") . lang('Edit') . "</a>" : "") // 1000 - maximum length of encoded URL in IE is 2083 characters
-									;
+									$time = " <span class='time'>(" . format_time($start) . ")</span>";
+									$edit_link = (strlen($q) < 1000 ? " <a href='" . h(ME) . "sql=" . urlencode(trim($q)) . "'>" . icon("edit") . lang('Edit') . "</a>" : ""); // 1000 - maximum length of encoded URL in IE is 2083 characters
 									$affected = $connection->affected_rows; // getting warnings overwrites this
+
 									$warnings = ($_POST["only_errors"] ? "" : $driver->warnings());
 									$warnings_id = "warnings-$commands";
-									if ($warnings) {
-										$time .= ", <a href='#$warnings_id' class='toggle'>" . lang('Warnings') . icon("chevron-down", "chevron") . "</a>";
-									}
+									$warnings_link = $warnings ? "<a href='#$warnings_id' class='toggle'>" . lang('Warnings') . icon_chevron_down() . "</a>" : null;
+
 									$explain = null;
 									$explain_id = "explain-$commands";
+									$export = false;
+									$export_id = "export-$commands";
+
 									if (is_object($result)) {
 										$limit = $_POST["limit"];
 										$orgtables = select($result, $connection2, [], $limit);
+
 										if (!$_POST["only_errors"]) {
-											echo "<form action='' method='post'>\n";
+											echo "<p class='links'>";
+
 											$num_rows = $result->num_rows;
-											echo "<p>" . ($num_rows ? ($limit && $num_rows > $limit ? lang('%d / ', $limit) : "") . lang('%d row(s)', $num_rows) : "");
-											echo $time;
+											echo ($num_rows ? ($limit && $num_rows > $limit ? lang('%d / ', $limit) : "") . lang('%d row(s)', $num_rows) : "");
+
+											echo $time, $edit_link, $warnings_link;
+
 											if ($connection2 && preg_match("~^($space|\\()*+SELECT\\b~i", $q) && ($explain = explain($connection2, $q))) {
-												echo ", <a href='#$explain_id'>Explain</a>" . script("qsl('a').onclick = partial(toggle, '$explain_id');", "");
+												echo "<a href='#$explain_id' class='toggle'>Explain" . icon_chevron_down() . "</a>";
 											}
-											$id = "export-$commands";
-											echo ", <a href='#$id'>" . lang('Export') . "</a>" . script("qsl('a').onclick = partial(toggle, '$id');", "") . "<span id='$id' class='hidden'>: "
-												. html_select("output", $adminer->dumpOutput(), $adminer_export["output"]) . " "
-												. html_select("format", $dump_format, $adminer_export["format"])
-												. "<input type='hidden' name='query' value='" . h($q) . "'>"
-												. " <input type='submit' class='button' name='export' value='" . lang('Export') . "'><input type='hidden' name='token' value='$token'></span>\n"
-												. "</form>\n"
-											;
+
+											$export = true;
+											echo "<a href='#$export_id' class='toggle'>" . lang('Export') . icon_chevron_down() . "</a>";
+											echo "</p>\n";
 										}
 
 									} else {
@@ -192,14 +194,21 @@ if (!$error && $_POST) {
 											set_session("dbs", null); // clear cache
 											stop_session();
 										}
+
 										if (!$_POST["only_errors"]) {
 											$title = isset($connection->info) ? "title='" . h($connection->info) . "'" : "";
-											echo "<p class='message' $title>", lang('Query executed OK, %d row(s) affected.', $affected), "$time</p>\n";
+											echo "<p class='message' $title>", lang('Query executed OK, %d row(s) affected.', $affected);
+											echo "$time $edit_link";
+											if ($warnings_link) {
+												echo ", $warnings_link";
+											}
+											echo "</p>\n";
 										}
 									}
 
+									echo script("initToggles(qsl('p'));");
+
 									if ($warnings) {
-										echo script("initToggles(qsl('p'));");
 										echo "<div id='$warnings_id' class='hidden'>\n$warnings</div>\n";
 									}
 
@@ -207,6 +216,16 @@ if (!$error && $_POST) {
 										echo "<div id='$explain_id' class='hidden explain'>\n";
 										select($explain, $connection2, $orgtables);
 										echo "</div>\n";
+									}
+
+									if ($export) {
+										echo "<form id='$export_id' action='' method='post' class='hidden'><p>\n";
+										echo html_select("output", $adminer->dumpOutput(), $adminer_export["output"]) . " ";
+										echo html_select("format", $dump_format, $adminer_export["format"]);
+										echo "<input type='hidden' name='query' value='", h($q), "'>";
+										echo "<input type='hidden' name='token' value='$token'>";
+										echo " <input type='submit' class='button' name='export' value='" . lang('Export') . "'>";
+										echo "</p></form>\n";
 									}
 								}
 

@@ -179,6 +179,11 @@ function icon_solo(string $id): string
 	return icon($id, "solo");
 }
 
+function icon_chevron_down(): string
+{
+	return icon("chevron-down", "chevron");
+}
+
 function icon(string $id, ?string $class = null): string
 {
 	$id = h($id);
