@@ -240,7 +240,7 @@ if ($adminer->homepage()) {
 						'<td>', h($row["DTD_IDENTIFIER"]), '</td>';
 
 					if ($commentsSupported) {
-						echo '<td>', shorten_utf8(preg_replace('~\s{2,}~', " ", trim($row["ROUTINE_COMMENT"])), 50), '</td>';
+						echo '<td>', truncate_utf8(preg_replace('~\s{2,}~', " ", trim($row["ROUTINE_COMMENT"])), 50), '</td>';
 					}
 
 					echo '<td><a href="' . h(ME . ($row["ROUTINE_TYPE"] != "PROCEDURE" ? 'function=' : 'procedure=') . urlencode($row["SPECIFIC_NAME"]) . $name) . '">' . lang('Alter') . "</a></td>";

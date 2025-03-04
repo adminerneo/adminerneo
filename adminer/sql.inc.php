@@ -314,7 +314,7 @@ if (!isset($_GET["import"]) && $history) {
 		$key = key($history);
 		list($q, $time, $elapsed) = $val;
 
-		echo " <pre><code class='jush-$jush'>", shorten_utf8(ltrim(str_replace("\n", " ", str_replace("\r", "", preg_replace('~^(#|-- ).*~m', '', $q))))), "</code></pre>";
+		echo " <pre><code class='jush-$jush'>", truncate_utf8(ltrim(str_replace("\n", " ", str_replace("\r", "", preg_replace('~^(#|-- ).*~m', '', $q))))), "</code></pre>";
 		echo '<p class="links">';
 		echo "<a href='" . h(ME . "sql=&history=$key") . "'>" . icon("edit") . lang('Edit') . "</a>";
 		echo " <span class='time' title='" . @date('Y-m-d', $time) . "'>" . @date("H:i:s", $time) . // @ - time zone may be not set

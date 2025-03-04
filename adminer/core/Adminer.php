@@ -257,7 +257,7 @@ class Adminer extends AdminerBase
 	*/
 	function sqlCommandQuery($query)
 	{
-		return shorten_utf8(trim($query), 1000);
+		return truncate_utf8(trim($query), 1000);
 	}
 
 	/** Description of a row in a table
@@ -751,7 +751,7 @@ class Adminer extends AdminerBase
 		}
 
 		$return .= "<div id='$sqlId' class='hidden'>\n";
-        $return .= "<pre><code class='jush-$jush'>" . shorten_utf8($query, 1000) . "</code></pre>\n";
+        $return .= "<pre><code class='jush-$jush'>" . truncate_utf8($query, 1000) . "</code></pre>\n";
 
         $return .= "<p class='links'>";
 		if ($supportSql) {

@@ -825,19 +825,21 @@ function is_utf8($val) {
 	return (preg_match('~~u', $val) && !preg_match('~[\0-\x8\xB\xC\xE-\x1F]~', $val));
 }
 
-/** Shorten UTF-8 string
-* @param string
-* @param int
-* @param string
-* @return string escaped string with appended ...
-*/
-function shorten_utf8($string, $length = 80, $suffix = "") {
-	if ($string == "") return $suffix;
+/**
+ * Truncates UTF-8 string.
+ *
+ * @return string Escaped string with appended ellipsis.
+ */
+function truncate_utf8(string $string, int $length = 80): string
+{
+	if ($string == "") return "";
 
-	if (!preg_match("(^(" . repeat_pattern("[\t\r\n -\x{10FFFF}]", $length) . ")($)?)u", $string, $match)) { // ~s causes trash in $match[2] under some PHP versions, (.|\n) is slow
+	// ~s causes trash in $match[2] under some PHP versions, (.|\n) is slow
+	if (!preg_match("(^(" . repeat_pattern("[\t\r\n -\x{10FFFF}]", $length) . ")($)?)u", $string, $match)) {
 		preg_match("(^(" . repeat_pattern("[\t\r\n -~]", $length) . ")($)?)", $string, $match);
 	}
-	return h($match[1]) . $suffix . (isset($match[2]) ? "" : "<i>…</i>");
+
+	return h($match[1]) . (isset($match[2]) ? "" : "…");
 }
 
 /** Format decimal number
@@ -1323,7 +1325,7 @@ function select_value($val, $link, $field, $text_length) {
 		if (!is_utf8($return)) {
 			$return = "\0"; // htmlspecialchars of binary data returns an empty string
 		} elseif ($text_length != "" && is_shortable($field)) {
-			$return = shorten_utf8($return, max(0, +$text_length)); // usage of LEFT() would reduce traffic but complicate query - expected average speedup: .001 s VS .01 s on local network
+			$return = truncate_utf8($return, max(0, +$text_length)); // usage of LEFT() would reduce traffic but complicate query - expected average speedup: .001 s VS .01 s on local network
 		} else {
 			$return = h($return);
 		}
