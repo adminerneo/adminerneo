@@ -1124,18 +1124,6 @@ function eventStop(event) {
 	}
 }
 
-/** Add event listener
-* @param HTMLElement
-* @param string without 'on'
-* @param function
-*/
-function addEvent(el, action, handler) {
-	if (el.addEventListener) {
-		el.addEventListener(action, handler, false);
-	} else {
-		el.attachEvent('on' + action, handler);
-	}
-}
 
 
 /** Clone node and setup submit highlighting
