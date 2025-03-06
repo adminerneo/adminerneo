@@ -9,17 +9,17 @@ class Config
 	public const NavigationReversed = "reversed";
 
 	/** @var array */
-	private $config;
+	private $params;
 
 	/** @var Server[] */
 	private $servers = [];
 
-	public function __construct(array $config)
+	public function __construct(array $params)
 	{
-		$this->config = $config; // !compile: custom config
+		$this->params = $params; // !compile: custom config
 
-		if (isset($this->config["servers"])) {
-			foreach ($this->config["servers"] as $server) {
+		if (isset($this->params["servers"])) {
+			foreach ($this->params["servers"] as $server) {
 				$serverObj = new Server($server);
 				$this->servers[$serverObj->getKey()] = $serverObj;
 			}
@@ -28,12 +28,12 @@ class Config
 
 	public function getTheme(): string
 	{
-		return $this->config["theme"] ?? "default";
+		return $this->params["theme"] ?? "default";
 	}
 
 	public function getColorVariant(): ?string
 	{
-		return $this->config["colorVariant"] ?? null;
+		return $this->params["colorVariant"] ?? null;
 	}
 
 	/**
@@ -41,7 +41,7 @@ class Config
 	 */
 	public function getCssUrls(): array
 	{
-		return $this->config["cssUrls"] ?? [];
+		return $this->params["cssUrls"] ?? [];
 	}
 
 	/**
@@ -49,12 +49,12 @@ class Config
 	 */
 	public function getJsUrls(): array
 	{
-		return $this->config["jsUrls"] ?? [];
+		return $this->params["jsUrls"] ?? [];
 	}
 
 	public function getNavigationMode(): string
 	{
-		return $this->config["navigationMode"] ?? self::NavigationSimple;
+		return $this->params["navigationMode"] ?? self::NavigationSimple;
 	}
 
 	public function isNavigationSimple(): bool
@@ -74,72 +74,72 @@ class Config
 
 	public function isSelectionPreferred(): bool
 	{
-		return $this->config["preferSelection"] ?? false;
+		return $this->params["preferSelection"] ?? false;
 	}
 
 	public function getRecordsPerPage(): int
 	{
-		return (int)($this->config["recordsPerPage"] ?? 50);
+		return (int)($this->params["recordsPerPage"] ?? 50);
 	}
 
 	public function isVersionVerificationEnabled(): bool
 	{
-		return $this->config["versionVerification"] ?? true;
+		return $this->params["versionVerification"] ?? true;
 	}
 
 	public function getHiddenDatabases(): array
 	{
-		return $this->config["hiddenDatabases"] ?? [];
+		return $this->params["hiddenDatabases"] ?? [];
 	}
 
 	public function getHiddenSchemas(): array
 	{
-		return $this->config["hiddenSchemas"] ?? [];
+		return $this->params["hiddenSchemas"] ?? [];
 	}
 
 	public function getVisibleCollations(): array
 	{
-		return $this->config["visibleCollations"] ?? [];
+		return $this->params["visibleCollations"] ?? [];
 	}
 
 	public function getDefaultPasswordHash(): ?string
 	{
-		return $this->config["defaultPasswordHash"] ?? null;
+		return $this->params["defaultPasswordHash"] ?? null;
 	}
 
 	public function getSslKey(): ?string
 	{
-		return $this->config["sslKey"] ?? null;
+		return $this->params["sslKey"] ?? null;
 	}
 
 	public function getSslCertificate(): ?string
 	{
-		return $this->config["sslCertificate"] ?? null;
+		return $this->params["sslCertificate"] ?? null;
 	}
 
 	public function getSslCaCertificate(): ?string
 	{
-		return $this->config["sslCaCertificate"] ?? null;
+		return $this->params["sslCaCertificate"] ?? null;
 	}
 
 	public function getSslMode(): ?string
 	{
-		return $this->config["sslMode"] ?? null;
+		return $this->params["sslMode"] ?? null;
 	}
 
 	public function getSslEncrypt(): ?bool
 	{
-		return $this->config["sslEncrypt"] ?? null;
+		return $this->params["sslEncrypt"] ?? null;
 	}
 
 	public function getSslTrustServerCertificate(): ?bool
 	{
-		return $this->config["sslTrustServerCertificate"] ?? null;
+		return $this->params["sslTrustServerCertificate"] ?? null;
 	}
 
 	public function hasServers(): bool
 	{
-		return isset($this->config["servers"]);
+		return isset($this->params["servers"]);
 	}
 
 	/**
@@ -166,6 +166,6 @@ class Config
 			return;
 		}
 
-		$this->config = array_merge($this->config, $server->getConfigParams());
+		$this->params = array_merge($this->params, $server->getConfigParams());
 	}
 }
