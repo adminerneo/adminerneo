@@ -156,12 +156,12 @@ function target_blank() {
 	return ' target="_blank" rel="noreferrer noopener"';
 }
 
-/** Escape for HTML
-* @param string
-* @return string
-*/
-function h($string) {
-	return $string !== null ? str_replace("\0", "&#0;", htmlspecialchars($string, ENT_QUOTES, 'utf-8')) : "";
+/**
+ * Escapes string for HTML.
+ */
+function h(?string $string): string
+{
+	return $string !== null && $string !== "" ? str_replace("\0", "&#0;", htmlspecialchars($string, ENT_QUOTES, 'utf-8')) : "";
 }
 
 function link_files(string $name, array $file_paths): ?string
