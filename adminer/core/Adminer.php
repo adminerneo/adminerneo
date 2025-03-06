@@ -103,18 +103,30 @@ class Adminer extends AdminerBase
 		return true;
 	}
 
-	/** Print login form
-	* @return null
-	*/
+	/**
+	 * Prints login form.
+	 */
 	function loginForm() {
 		global $drivers;
+
+		$serverPairs = $this->config->getServerPairs($drivers);
+
 		echo "<table class='box'>\n";
-		echo $this->loginFormField('driver', '<tr><th>' . lang('System') . '<td>', html_select("auth[driver]", $drivers, DRIVER) . script("initLoginDriver(qsl('select'));"));
-		echo $this->loginFormField('server', '<tr><th>' . lang('Server') . '<td>', '<input class="input" name="auth[server]" value="' . h(SERVER) . '" title="hostname[:port]" placeholder="localhost" autocapitalize="off">' . "\n");
+		if ($serverPairs) {
+			echo $this->loginFormField('server', '<tr><th>' . lang('Server') . '<td>', "<select name='auth[server]'>" . optionlist($serverPairs, SERVER, true) . "</select>\n");
+		} else {
+			echo $this->loginFormField('driver', '<tr><th>' . lang('System') . '<td>', html_select("auth[driver]", $drivers, DRIVER) . script("initLoginDriver(qsl('select'));"));
+			echo $this->loginFormField('server', '<tr><th>' . lang('Server') . '<td>', '<input class="input" name="auth[server]" value="' . h(SERVER) . '" title="hostname[:port]" placeholder="localhost" autocapitalize="off">' . "\n");
+		}
+
 		echo $this->loginFormField('username', '<tr><th>' . lang('Username') . '<td>', '<input class="input" name="auth[username]" id="username" value="' . h($_GET["username"]) . '" autocomplete="username" autocapitalize="off">');
 		echo $this->loginFormField('password', '<tr><th>' . lang('Password') . '<td>', '<input type="password" class="input" name="auth[password]" autocomplete="current-password">' . "\n");
-		echo $this->loginFormField('db', '<tr><th>' . lang('Database') . '<td>', '<input class="input" name="auth[db]" value="' . h($_GET["db"]) . '" autocapitalize="off">' . "\n");
+
+		if (!$serverPairs) {
+			echo $this->loginFormField('db', '<tr><th>' . lang('Database') . '<td>', '<input class="input" name="auth[db]" value="' . h($_GET["db"]) . '" autocapitalize="off">' . "\n");
+		}
 		echo "</table>\n";
+
 		echo "<p><input type='submit' class='button default' value='" . lang('Login') . "'>\n";
 		echo checkbox("auth[permanent]", 1, $_COOKIE["adminer_permanent"], lang('Permanent login')) . "\n";
 	}
@@ -1118,14 +1130,15 @@ class Adminer extends AdminerBase
 						if ($password !== null) {
 							$dbs = $_SESSION["db"][$vendor][$server][$username];
 							foreach (($dbs ? array_keys($dbs) : [""]) as $db) {
-								$output .= "<li><a href='" . h(auth_url($vendor, $server, $username, $db)) . "' class='primary'>"
-									. h($drivers[$vendor])
-									. ($username != "" || $server != "" ? " - " : "")
+								$server_name = $server != "" ? $this->getServerName($server) : "";
+								$title = h($drivers[$vendor])
+									. ($username != "" || $server_name != "" ? " - " : "")
 									. h($username)
-									. ($username != "" && $server != "" ? "@" : "")
-									. ($server != "" ? h($this->serverName($server)) : "")
-									. ($db != "" ? h(" - $db") : "")
-									. "</a></li>\n";
+									. ($username != "" && $server_name != "" ? "@" : "")
+									. h($server_name)
+									. ($db != "" ? h(" - $db") : "");
+
+								$output .= "<li><a href='" . h(auth_url($vendor, $server, $username, $db)) . "' class='primary' title='$title'>$title</a></li>\n";
 							}
 						}
 					}

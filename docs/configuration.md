@@ -174,3 +174,28 @@ MS SQL: Value for [Encrypt connection option](https://learn.microsoft.com/en-us/
 Default value: `null`
 
 MS SQL: Value for [TrustServerCertificate connection option](https://www.postgresql.org/docs/current/libpq-connect.html#LIBPQ-CONNECT-SSLMODE).
+
+### servers
+
+Default value: `[]`
+
+List of predefined server connections. Each server connection has parameters:
+
+| Parameter  | Required | Description                                                                                              |
+|------------|----------|----------------------------------------------------------------------------------------------------------|
+| `driver`   | YES      | Driver code: `mysql`, `pgsql`, `elastic`, etc. ([available drivers](adminer/drivers))                    |
+| `server`   | no       | Server address.                                                                                          |
+| `database` | no       | Database name, or file path to SQLite file.                                                              |
+| `name`     | no       | Custom server name.                                                                                      |
+| `config`   | no       | Configuration parameters that overrides global config.<br>All parameters are available except `servers`. |
+
+For example:
+```php
+$config = [
+    "servers" => [
+        ["driver" => "mysql", "name" => "Devel DB", "config" => ["colorVariant" => "green"]],
+        ["driver" => "pgsql", "server" => "localhost:5432", "database" => "postgres"],
+        ["driver" => "sqlite", "database" => "/projects/my-service/test.db", "config" => ["defaultPasswordHash" => ""]],
+    ],
+];
+```

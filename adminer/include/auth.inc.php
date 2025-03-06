@@ -127,6 +127,10 @@ function connect_to_db(): Min_DB
 {
 	global $adminer;
 
+	if ($adminer->getConfig()->hasServers() && !$adminer->getConfig()->getServer(SERVER)) {
+		auth_error(lang('Invalid server or credentials.'));
+	}
+
 	$connection = connect();
 	$authenticated = $connection instanceof Min_DB ? $adminer->authenticate($_GET["username"], get_password()) : false;
 
@@ -149,30 +153,39 @@ function connect_to_db(): Min_DB
 	return $connection;
 }
 
-$auth = $_POST["auth"];
+$auth = $_POST["auth"] ?? null;
 if ($auth) {
-	session_regenerate_id(); // defense against session fixation
-	$vendor = $auth["driver"];
-	$server = trim($auth["server"]);
-	$username = $auth["username"];
+	// Defense against session fixation.
+	session_regenerate_id();
+
+	/** @var Adminer $adminer */
+	$server = $auth["server"] ?? "";
+	$server_obj = $adminer->getConfig()->getServer($server);
+
+	$driver = $server_obj ? $server_obj->getDriver() : ($auth["driver"] ?? "");
+	$server = $server_obj ? $server : trim($server);
+	$username = $auth["username"] ?? "";
 	$password = $auth["password"] ?? "";
-	$db = $auth["db"];
-	set_password($vendor, $server, $username, $password);
-	$_SESSION["db"][$vendor][$server][$username][$db] = true;
+	$db = $server_obj ? $server_obj->getDatabase() : ($auth["db"] ?? "");
+
+	set_password($driver, $server, $username, $password);
+	$_SESSION["db"][$driver][$server][$username][$db] = true;
+
 	if ($auth["permanent"]) {
-		$key = base64_encode($vendor) . "-" . base64_encode($server) . "-" . base64_encode($username) . "-" . base64_encode($db);
+		$key = base64_encode($driver) . "-" . base64_encode($server) . "-" . base64_encode($username) . "-" . base64_encode($db);
 		$private = $adminer->permanentLogin(true);
 		$encrypted_password = $private ? encrypt_string($password, $private) : false;
 		$permanent[$key] = "$key:" . base64_encode($encrypted_password ?: "");
 		cookie("adminer_permanent", implode(" ", $permanent));
 	}
+
 	if (count($_POST) == 1 // 1 - auth
-		|| DRIVER != $vendor
+		|| DRIVER != $driver
 		|| SERVER != $server
 		|| $_GET["username"] !== $username // "0" == "00"
 		|| DB != $db
 	) {
-		redirect(auth_url($vendor, $server, $username, $db));
+		redirect(auth_url($driver, $server, $username, $db));
 	}
 
 } elseif ($_POST["logout"] && (!$has_token || verify_token())) {
@@ -187,17 +200,17 @@ if ($auth) {
 	$private = $adminer->permanentLogin();
 	foreach ($permanent as $key => $val) {
 		list(, $cipher) = explode(":", $val);
-		list($vendor, $server, $username, $db) = array_map('base64_decode', explode("-", $key));
-		set_password($vendor, $server, $username, $private ? decrypt_string(base64_decode($cipher), $private) : false);
-		$_SESSION["db"][$vendor][$server][$username][$db] = true;
+		list($driver, $server, $username, $db) = array_map('base64_decode', explode("-", $key));
+		set_password($driver, $server, $username, $private ? decrypt_string(base64_decode($cipher), $private) : false);
+		$_SESSION["db"][$driver][$server][$username][$db] = true;
 	}
 }
 
 function unset_permanent() {
 	global $permanent;
 	foreach ($permanent as $key => $val) {
-		list($vendor, $server, $username, $db) = array_map('base64_decode', explode("-", $key));
-		if ($vendor == DRIVER && $server == SERVER && $username == $_GET["username"] && $db == DB) {
+		list($driver, $server, $username, $db) = array_map('base64_decode', explode("-", $key));
+		if ($driver == DRIVER && $server == SERVER && $username == $_GET["username"] && $db == DB) {
 			unset($permanent[$key]);
 		}
 	}
@@ -270,6 +283,8 @@ if (!isset($_GET["username"]) || get_password() === null) {
 
 validate_server_input();
 check_invalid_login();
+
+$adminer->getConfig()->applyServer(SERVER);
 
 $connection = connect_to_db();
 $driver = new Min_Driver($connection);

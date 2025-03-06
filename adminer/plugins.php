@@ -39,6 +39,12 @@ function create_adminer(): Pluginer
 		new AdminerEditForeign,
 	];
 
+	$servers = [
+		["driver" => "mysql", "name" => "Devel DB"],
+		["driver" => "pgsql", "server" => "localhost:5432", "database" => "postgres", "config" => ["colorVariant" => null]],
+		["driver" => "sqlite", "database" => "/projects/my-service/test.db", "config" => ["defaultPasswordHash" => ""]],
+	];
+
 	$config = [
 		"colorVariant" => "green",
 		"navigationMode" => "dual",
@@ -47,7 +53,8 @@ function create_adminer(): Pluginer
 		"hiddenDatabases" => ["__system"],
 		"hiddenSchemas" => ["__system"],
 		"sslTrustServerCertificate" => true,
-		"visibleCollations" => ["utf8mb4*czech*ci", "ascii_general_ci"]
+		"visibleCollations" => ["utf8mb4*czech*ci", "ascii_general_ci"],
+//		"servers" => $servers,
 	];
 
 	return new Pluginer($plugins, $config);

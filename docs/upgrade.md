@@ -11,6 +11,7 @@ Migrating to 5.0
 - TODO: removed autoload of plugins based on class name 
 - TODO: removed all designs, new configurable theme and color variants
 - TODO: removed driver `elastic5`, all drivers can be compiled
+- TODO: removed plugin `AdminerLoginServers`, config options `servers`
 - TODO: removed plugin `AdminerLoginPasswordLess`, config options `defaultPasswordHash`
 - TODO: removed plugin `AdminerVersionNoverify`, config option `versionVerification`
 - TODO: removed plugin `AdminerDatabaseHide`, config options `hiddenDatabases`, `hiddenSchemas`
@@ -22,6 +23,7 @@ Migrating to 5.0
 - TODO: plugin interface
     - credentials() -> getCredentials()
     - login() -> authenticate()
+    - serverName() -> getServerName()
 - TODO: removed customizable css() method, config option `cssUrls`
 - TODO: removed unused selectQueryBuild() customization method
 - TODO: set `navigationMode` as a replacement for [AdminerSimpleMenu](https://github.com/pematon/adminer-plugins?tab=readme-ov-file#adminersimplemenu)

@@ -46,7 +46,9 @@ abstract class AdminerBase
 	 */
 	public function getCredentials(): array
 	{
-		return [SERVER, $_GET["username"], get_password()];
+		$server = $this->config->getServer(SERVER);
+
+		return [$server ? $server->getServer() : SERVER, $_GET["username"], get_password()];
 	}
 
 	/**
@@ -56,7 +58,7 @@ abstract class AdminerBase
 	 */
 	public function verifyDefaultPassword(string $password)
 	{
-		$hash = $this->getConfig()->getDefaultPasswordHash();
+		$hash = $this->config->getDefaultPasswordHash();
 		if ($hash === null || $hash === "") {
 			return lang('Database does not support password.');
 		} elseif (!password_verify($password, $hash)) {
@@ -74,7 +76,7 @@ abstract class AdminerBase
 	public function authenticate(string $username, string $password)
 	{
 		if ($password == "") {
-			$hash = $this->getConfig()->getDefaultPasswordHash();
+			$hash = $this->config->getDefaultPasswordHash();
 
 			if ($hash === null) {
 				return lang('AdminerNeo does not support accessing a database without a password, <a href="https://www.adminer.org/en/password/"%s>more information</a>.', target_blank());
@@ -104,9 +106,11 @@ abstract class AdminerBase
 	/**
 	 * Returns server name displayed in breadcrumbs. Can be empty string.
 	 */
-	function serverName(string $server): string
+	function getServerName(string $server): string
 	{
-		return $server;
+		$serverObj = $this->config->getServer($server);
+
+		return $serverObj ? $serverObj->getName() : $server;
 	}
 
 	public abstract function database();
@@ -192,7 +196,7 @@ abstract class AdminerBase
 	 */
 	function getCssUrls(): array
 	{
-		$urls = $this->getConfig()->getCssUrls();
+		$urls = $this->config->getCssUrls();
 
 		$filename = "adminer.css";
 		if (file_exists($filename)) {
@@ -209,7 +213,7 @@ abstract class AdminerBase
 	 */
 	function getJsUrls(): array
 	{
-		$urls = $this->getConfig()->getJsUrls();
+		$urls = $this->config->getJsUrls();
 
 		$filename = "adminer.js";
 		if (file_exists($filename)) {

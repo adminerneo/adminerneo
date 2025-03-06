@@ -25,6 +25,7 @@ if (function_exists("mb_internal_encoding")) {
 	mb_internal_encoding("8bit");
 }
 
+include __DIR__ . "/../core/Server.php";
 include __DIR__ . "/../core/Config.php";
 include __DIR__ . "/functions.inc.php";
 include __DIR__ . "/compile.inc.php";

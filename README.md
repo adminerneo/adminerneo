@@ -153,6 +153,7 @@ Available configuration parameters:
 | `sslMode`                   | null          | PostgreSQL: Value for [sslmode connection parameter](https://www.postgresql.org/docs/current/libpq-connect.html#LIBPQ-CONNECT-SSLMODE).             |
 | `sslEncrypt`                | null          | MS SQL: Value for [Encrypt connection option](https://learn.microsoft.com/en-us/sql/connect/php/connection-options).                                |
 | `sslTrustServerCertificate` | null          | MS SQL: Value for [TrustServerCertificate connection option](https://www.postgresql.org/docs/current/libpq-connect.html#LIBPQ-CONNECT-SSLMODE).     |
+| `servers`                   | []            | List of predefined server connections.                                                                                                              |
 
 For detailed information see [Configuration documentation](docs/configuration.md).
 

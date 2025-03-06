@@ -24,10 +24,11 @@ function page_header(string $title, string $error = "", $breadcrumb = [], ?strin
 		exit;
 	}
 
-	$service_title = strip_tags($adminer->name());
 	$title = strip_tags($title);
+	$server_part = $breadcrumb !== false && $breadcrumb !== null && SERVER != "" ? " - " . h($adminer->getServerName(SERVER)) : "";
+	$service_title = strip_tags($adminer->name());
 
-	$title_page = $title . (SERVER != "" ? h(" - " . SERVER) : "") . " - " . ($service_title != "" ? $service_title : "AdminNeo");
+	$title_page = $title . $server_part . " - " . ($service_title != "" ? $service_title : "AdminNeo");
 
 	// Load Adminer version from file if cookie is missing.
 	if ($adminer->getConfig()->isVersionVerificationEnabled()) {
@@ -144,7 +145,7 @@ function page_header(string $title, string $error = "", $breadcrumb = [], ?strin
 
 		echo '<li><a href="' . h(HOME_URL) . '" title="', lang('Home'), '">', icon_solo("home"), '</a></li>';
 
-		$server_name = $adminer->serverName(SERVER);
+		$server_name = $adminer->getServerName(SERVER);
 		$server_name = $server_name != "" ? h($server_name) : lang('Server');
 
 		if ($breadcrumb === false) {

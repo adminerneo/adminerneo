@@ -82,7 +82,7 @@ class Pluginer extends Adminer
 		return $this->applyPlugin(__FUNCTION__, func_get_args());
 	}
 
-	public function serverName(string $server): string
+	public function getServerName(string $server): string
 	{
 		return $this->applyPlugin(__FUNCTION__, func_get_args());
 	}
