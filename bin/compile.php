@@ -315,6 +315,10 @@ function min_version(): bool
 	return true;
 }
 
+function ini_bool(): bool {
+	return true;
+}
+
 // Parse script arguments.
 $arguments = $argv;
 array_shift($arguments);
