@@ -115,7 +115,11 @@ class Adminer extends AdminerBase
 		if ($serverPairs) {
 			echo $this->composeLoginFormRow('server', '<tr><th>' . lang('Server') . '<td>', "<select name='auth[server]'>" . optionlist($serverPairs, SERVER, true) . "</select>");
 		} else {
-			echo $this->composeLoginFormRow('driver', '<tr><th>' . lang('System') . '<td>', html_select("auth[driver]", $drivers, DRIVER) . script("initLoginDriver(qsl('select'));", ""));
+			if (count($drivers) > 1) {
+				echo $this->composeLoginFormRow('driver', '<tr><th>' . lang('System') . '<td>', html_select("auth[driver]", $drivers, DRIVER) . script("initLoginDriver(qsl('select'));", ""));
+			} else {
+				echo $this->composeLoginFormRow('driver', '', '<input type="hidden" name="auth[driver]" value="' . array_keys($drivers)[0] . '">');
+			}
 			echo $this->composeLoginFormRow('server', '<tr><th>' . lang('Server') . '<td>', '<input class="input" name="auth[server]" value="' . h(SERVER) . '" title="hostname[:port]" placeholder="localhost" autocapitalize="off">');
 		}
 
