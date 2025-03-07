@@ -317,13 +317,15 @@ function js_escape($string) {
 	return addcslashes($string, "\r\n'\\/"); // slash for <script>
 }
 
-/** Get INI boolean value
-* @param string
-* @return bool
-*/
-function ini_bool($ini) {
-	$val = ini_get($ini);
-	return (preg_match('~^(on|true|yes)$~i', $val) || (int) $val); // boolean values set by php_value are strings
+/**
+ * Returns INI boolean value.
+ */
+function ini_bool(string $option): bool
+{
+	$val = ini_get($option);
+
+	// boolean values set by php_value are strings
+	return preg_match('~^(on|true|yes)$~i', $val) || (int) $val;
 }
 
 /** Check if SID is necessary
