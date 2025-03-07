@@ -78,7 +78,6 @@ $translations = [
 
 	'Database' => 'Duomenų bazė',
 	'Use' => 'Naudoti',
-	'Select database' => 'Pasirinkti duomenų bazę',
 	'Invalid database.' => 'Neteisinga duomenų bazė.',
 	'Database has been dropped.' => 'Duomenų bazė panaikinta.',
 	'Databases have been dropped.' => 'Duomenų bazės panaikintos.',
@@ -273,8 +272,6 @@ $translations = [
 	'Network' => 'Tinklas',
 	'Geometry' => 'Geometrija',
 	'Relations' => 'Ryšiai',
-
-	// 'Editor' => 'Redaktorius',
 	// date format in Editor: $1 yyyy, $2 yy, $3 mm, $4 m, $5 dd, $6 d
 	'$1-$3-$5' => '$1-$3-$5',
 	// hint for date format - use language equivalents for day, month and year shortcuts
@@ -331,7 +328,6 @@ $translations = [
 	'Default value' => null,
 	'Full table scan' => null,
 	'Too many unsuccessful logins, try again in %d minute(s).' => [],
-	'Master password expired. <a href="https://www.adminer.org/en/extension/"%s>Implement</a> %s method to make it permanent.' => null,
 	'The action will be performed after successful login with the same credentials.' => null,
 	'Connecting to privileged ports is not allowed.' => null,
 	'There is a space in the input password which might be the cause.' => null,
@@ -367,4 +363,5 @@ $translations = [
 	'Alter check' => null,
 	'Create check' => null,
 	'Checks' => null,
+	'Invalid permanent login, please login again.' => null,
 ];

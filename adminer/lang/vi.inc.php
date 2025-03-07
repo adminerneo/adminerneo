@@ -16,7 +16,6 @@ $translations = [
 	'Logout successful.' => 'Đã thoát xong.',
 	'Invalid server or credentials.' => null,
 	'Too many unsuccessful logins, try again in %d minute(s).' => 'Bạn gõ sai tài khoản quá nhiều lần, hãy thử lại sau %d phút nữa.',
-	'Master password expired. <a href="https://www.adminer.org/en/extension/"%s>Implement</a> %s method to make it permanent.' => 'Mật khẩu đã hết hạn. <a href="https://www.adminer.org/en/extension/"%s>Thử cách làm</a> để giữ cố định.',
 	'Language' => 'Ngôn ngữ',
 	'Invalid CSRF token. Send the form again.' => 'Mã kiểm tra CSRF sai, hãy nhập lại biểu mẫu.',
 	'No extension' => 'Không có phần mở rộng',
@@ -81,7 +80,6 @@ $translations = [
 
 	'Database' => 'Cơ sở dữ liệu',
 	'Use' => 'Sử dụng',
-	'Select database' => 'Chọn CSDL',
 	'Invalid database.' => 'CSDL sai.',
 	'Database has been dropped.' => 'CSDL đã bị xoá.',
 	'Databases have been dropped.' => 'Các CSDL đã bị xoá.',
@@ -287,8 +285,6 @@ $translations = [
 	'Network' => 'Mạng',
 	'Geometry' => 'Toạ độ',
 	'Relations' => 'Quan hệ',
-
-	// 'Editor' => 'Biên tập',
 	// date format in Editor: $1 yyyy, $2 yy, $3 mm, $4 m, $5 dd, $6 d
 	'$1-$3-$5' => '$1-$3-$5',
 	// hint for date format - use language equivalents for day, month and year shortcuts
@@ -366,4 +362,5 @@ $translations = [
 	'Alter check' => null,
 	'Create check' => null,
 	'Checks' => null,
+	'Invalid permanent login, please login again.' => null,
 ];

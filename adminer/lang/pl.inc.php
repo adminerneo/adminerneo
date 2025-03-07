@@ -16,10 +16,9 @@ $translations = [
 	'Logout successful.' => 'Wylogowano pomyślnie.',
 	'Invalid server or credentials.' => 'Nieprawidłowy serwer lub dane logowania.',
 	'Too many unsuccessful logins, try again in %d minute(s).' => ['Za dużo nieudanych prób logowania, spróbuj ponownie za %d minutę.', 'Za dużo nieudanych prób logowania, spróbuj ponownie za %d minuty.', 'Za dużo nieudanych prób logowania, spróbuj ponownie za %d minut.'],
-	'Master password expired. <a href="https://www.adminer.org/en/extension/"%s>Implement</a> %s method to make it permanent.' => 'Ważność hasła głównego wygasła. <a href="https://www.adminer.org/pl/extension/"%s>Zaimplementuj</a> własną metodę %s, aby ustawić je na stałe.',
 	'Language' => 'Język',
 	'Invalid CSRF token. Send the form again.' => 'Nieprawidłowy token CSRF. Spróbuj wysłać formularz ponownie.',
-	'If you did not send this request from AdminNeo then close this page.' => 'Jeżeli nie wywołałeś tej strony z AdminNeo, zamknij to okno.',
+	'If you did not send this request from AdminNeo then close this page.' => 'Jeżeli nie wywołałeś tej strony z AdminerNeo, zamknij to okno.',
 	'No extension' => 'Brak rozszerzenia',
 	'None of the supported PHP extensions (%s) are available.' => 'Żadne z rozszerzeń PHP umożliwiających połączenie się z bazą danych (%s) nie jest dostępne.',
 	'Connecting to privileged ports is not allowed.' => 'Łączenie do portów uprzywilejowanych jest niedozwolone.',
@@ -85,7 +84,6 @@ $translations = [
 
 	'Database' => 'Baza danych',
 	'Use' => 'Wybierz',
-	'Select database' => 'Wybierz bazę danych',
 	'Invalid database.' => 'Nie znaleziono bazy danych.',
 	'Database has been dropped.' => 'Baza danych została usunięta.',
 	'Databases have been dropped.' => 'Bazy danych zostały usunięte.',
@@ -298,8 +296,6 @@ $translations = [
 	'Network' => 'Sieć',
 	'Geometry' => 'Geometria',
 	'Relations' => 'Relacje',
-
-	// 'Editor' => 'Edytor',
 	// date format in Editor: $1 yyyy, $2 yy, $3 mm, $4 m, $5 dd, $6 d
 	'$1-$3-$5' => '$6.$4.$1',
 	// hint for date format - use language equivalents for day, month and year shortcuts
@@ -367,4 +363,5 @@ $translations = [
 	'Alter check' => null,
 	'Create check' => null,
 	'Checks' => null,
+	'Invalid permanent login, please login again.' => null,
 ];

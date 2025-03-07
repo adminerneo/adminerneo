@@ -10,7 +10,6 @@ $translations = [
 	'Server' => 'Server',
 	'Username' => 'Benutzer',
 	'Password' => 'Passwort',
-	'Select database' => 'Datenbank auswählen',
 	'Invalid database.' => 'Datenbank ungültig.',
 	'Table has been dropped.' => 'Tabelle wurde entfernt.',
 	'Table has been altered.' => 'Tabelle wurde geändert.',
@@ -213,7 +212,6 @@ $translations = [
 	'Strings' => 'Zeichenketten',
 	'Binary' => 'Binär',
 	'Lists' => 'Listen',
-	// 'Editor' => 'Editor',
 	'E-mail' => 'E-Mail',
 	'From' => 'Von',
 	'Subject' => 'Betreff',
@@ -285,7 +283,6 @@ $translations = [
 	'Saving' => 'Speichere',
 	'yes' => 'ja',
 	'no' => 'nein',
-	'Master password expired. <a href="https://www.adminer.org/en/extension/"%s>Implement</a> %s method to make it permanent.' => 'Das Master-Passwort ist abgelaufen. <a href="https://www.adminer.org/de/extension/"%s>Implementieren</a> Sie die %s Methode, um es permanent zu machen.',
 	'%d / ' => '%d / ',
 
 	'Drop %s?' => '%s entfernen?',
@@ -323,4 +320,6 @@ $translations = [
 	'Alter check' => 'Check ändern',
 	'Create check' => 'Check erstellen',
 	'Checks' => 'Checks',
+
+	'Invalid permanent login, please login again.' => 'Ungültige permanente Anmeldung, bitte melden Sie sich erneut an.',
 ];

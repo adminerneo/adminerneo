@@ -16,7 +16,6 @@ $translations = [
 	'Logout successful.' => 'با موفقیت خارج شدید.',
 	'Invalid server or credentials.' => null,
 	'Too many unsuccessful logins, try again in %d minute(s).' => ['ورودهای ناموفق بیش از حد، %d دقیقه دیگر تلاش نمایید.', 'ورودهای ناموفق بیش از حد، %d دقیقه دیگر تلاش نمایید.'],
-	'Master password expired. <a href="https://www.adminer.org/en/extension/"%s>Implement</a> %s method to make it permanent.' => 'رمز اصلی باطل شده است. روش %s را <a href="https://www.adminer.org/en/extension/"%s>پیاده سازی</a> کرده تا آن را دائمی سازید.',
 	'Language' => 'زبان',
 	'Invalid CSRF token. Send the form again.' => 'CSRF token نامعتبر است. دوباره سعی کنید.',
 	'No extension' => 'پسوند نامعتبر',
@@ -82,7 +81,6 @@ $translations = [
 
 	'Database' => 'پایگاه داده',
 	'Use' => 'استفاده',
-	'Select database' => 'انتخاب پایگاه داده',
 	'Invalid database.' => 'پایگاه داده نامعتبر.',
 	'Database has been dropped.' => 'پایگاه داده حذف شد.',
 	'Databases have been dropped.' => 'پایگاه های داده حذف شدند.',
@@ -293,8 +291,6 @@ $translations = [
 	'Network' => 'شبکه',
 	'Geometry' => 'هندسه',
 	'Relations' => 'رابطه ها',
-
-	// 'Editor' => 'ویرایشگر',
 	// date format in Editor: $1 yyyy, $2 yy, $3 mm, $4 m, $5 dd, $6 d
 	'$1-$3-$5' => '$1-$3-$5',
 	// hint for date format - use language equivalents for day, month and year shortcuts
@@ -367,4 +363,5 @@ $translations = [
 	'Alter check' => null,
 	'Create check' => null,
 	'Checks' => null,
+	'Invalid permanent login, please login again.' => null,
 ];

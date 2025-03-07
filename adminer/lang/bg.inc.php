@@ -16,7 +16,6 @@ $translations = [
 	'Logout successful.' => 'Излизането е успешно.',
 	'Invalid server or credentials.' => null,
 	'Too many unsuccessful logins, try again in %d minute(s).' => ['Прекалено много неуспешни опити за вход, опитайте пак след %d минута.', 'Прекалено много неуспешни опити за вход, опитайте пак след %d минути.'],
-	'Master password expired. <a href="https://www.adminer.org/en/extension/"%s>Implement</a> %s method to make it permanent.' => 'Главната парола вече е невалидна. <a href="https://www.adminer.org/en/extension/"%s>Изберете</a> %s метод, за да я направите постоянна.',
 	'Language' => 'Език',
 	'Invalid CSRF token. Send the form again.' => 'Невалиден шифроващ ключ. Попълнете и изпратете формуляра отново.',
 	'If you did not send this request from AdminNeo then close this page.' => 'Ако не сте изпратили тази заявка през AdminNeo, затворете тази страница.',
@@ -85,7 +84,6 @@ $translations = [
 
 	'Database' => 'База данни',
 	'Use' => 'Избор',
-	'Select database' => 'Избор на база данни',
 	'Invalid database.' => 'Невалидна база данни.',
 	'Database has been dropped.' => 'Базата данни беше премахната.',
 	'Databases have been dropped.' => 'Базите данни бяха премехнати.',
@@ -297,8 +295,6 @@ $translations = [
 	'Network' => 'Мрежа',
 	'Geometry' => 'Геометрия',
 	'Relations' => 'Зависимости',
-
-	// 'Editor' => 'Редактор',
 	// date format in Editor: $1 yyyy, $2 yy, $3 mm, $4 m, $5 dd, $6 d
 	'$1-$3-$5' => '$1-$3-$5',
 	// hint for date format - use language equivalents for day, month and year shortcuts
@@ -366,4 +362,5 @@ $translations = [
 	'Alter check' => null,
 	'Create check' => null,
 	'Checks' => null,
+	'Invalid permanent login, please login again.' => null,
 ];

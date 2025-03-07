@@ -16,10 +16,9 @@ $translations = [
 	'Logout successful.' => 'Αποσυνδεθήκατε με επιτυχία.',
 	'Invalid server or credentials.' => null,
 	'Too many unsuccessful logins, try again in %d minute(s).' => ['Επανειλημμένες ανεπιτυχείς προσπάθειες σύνδεσης, δοκιμάστε ξανά σε %s λεπτό.', 'Επανειλημμένες ανεπιτυχείς προσπάθειες σύνδεσης, δοκιμάστε ξανά σε %s λεπτά.'],
-	'Master password expired. <a href="https://www.adminer.org/en/extension/"%s>Implement</a> %s method to make it permanent.' => 'Έληξε ο Κύριος Κωδικός. <a href="https://www.adminer.org/en/extension/"%s>Ενεργοποιήστε</a> τη μέθοδο %s για να τον κάνετε μόνιμο.',
 	'Language' => 'Γλώσσα',
 	'Invalid CSRF token. Send the form again.' => 'Άκυρο κουπόνι CSRF. Στείλτε τη φόρμα ξανά.',
-	'If you did not send this request from AdminNeo then close this page.' => 'Αν δε στείλατε αυτό το αίτημα από το AdminNeo, τότε κλείστε αυτή τη σελίδα.',
+	'If you did not send this request from AdminNeo then close this page.' => 'Αν δε στείλατε αυτό το αίτημα από το AdminerNeo, τότε κλείστε αυτή τη σελίδα.',
 	'No extension' => 'Καμία Επέκταση',
 	'None of the supported PHP extensions (%s) are available.' => 'Καμία από τις υποστηριζόμενες επεκτάσεις PHP (%s) δεν είναι διαθέσιμη.',
 	'Session support must be enabled.' => 'Πρέπει να είναι ενεργοποιημένη η υποστήριξη συνεδριών.',
@@ -84,7 +83,6 @@ $translations = [
 
 	'Database' => 'Β. Δεδομένων',
 	'Use' => 'χρήση',
-	'Select database' => 'Επιλέξτε Β.Δ.',
 	'Invalid database.' => 'Λανθασμένη Β.Δ.',
 	'Database has been dropped.' => 'Η Β.Δ. διαγράφηκε.',
 	'Databases have been dropped.' => 'Οι Β.Δ. διαγράφηκαν.',
@@ -295,8 +293,6 @@ $translations = [
 	'Network' => 'Δίκτυο',
 	'Geometry' => 'Γεωμετρία',
 	'Relations' => 'Συσχετήσεις',
-
-	// 'Editor' => 'Επεξεργαστής',
 	// date format in Editor: $1 yyyy, $2 yy, $3 mm, $4 m, $5 dd, $6 d
 	'$1-$3-$5' => '$5/$3/$1',
 	// hint for date format - use language equivalents for day, month and year shortcuts
@@ -367,4 +363,5 @@ $translations = [
 	'Alter check' => null,
 	'Create check' => null,
 	'Checks' => null,
+	'Invalid permanent login, please login again.' => null,
 ];

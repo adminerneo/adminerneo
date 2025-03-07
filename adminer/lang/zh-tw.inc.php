@@ -19,10 +19,9 @@ $translations = [
 	'AdminNeo does not support accessing a database without a password, <a href="https://www.adminer.org/en/password/"%s>more information</a>.' => 'AdminNeo預設不支援訪問沒有密碼的資料庫，<a href="https://www.adminer.org/en/password/"%s>詳情見這裡</a>.',
 	'Database does not support password.' => '資料庫不支援密碼。',
 	'Too many unsuccessful logins, try again in %d minute(s).' => '登錄失敗次數過多，請 %d 分鐘後重試。',
-	'Master password expired. <a href="https://www.adminer.org/en/extension/"%s>Implement</a> %s method to make it permanent.' => '主密碼已過期。<a href="https://www.adminer.org/en/extension/"%s>請擴展</a> %s 方法讓它永久化。',
 	'Language' => '語言',
 	'Invalid CSRF token. Send the form again.' => '無效的 CSRF token。請重新發送表單。',
-	'If you did not send this request from AdminNeo then close this page.' => '如果您並沒有從AdminNeo發送請求，請關閉此頁面。',
+	'If you did not send this request from AdminNeo then close this page.' => '如果您並沒有從AdminerNeo發送請求，請關閉此頁面。',
 	'No extension' => '無擴充模組',
 	'None of the supported PHP extensions (%s) are available.' => '沒有任何支援的 PHP 擴充模組（%s）。',
 	'Connecting to privileged ports is not allowed.' => '不允許連接到特權埠。',
@@ -93,7 +92,6 @@ $translations = [
 	'Database' => '資料庫',
 	'DB' => '資料庫',
 	'Use' => '使用',
-	'Select database' => '選擇資料庫',
 	'Invalid database.' => '無效的資料庫。',
 	'Database has been dropped.' => '資料庫已刪除。',
 	'Databases have been dropped.' => '資料庫已刪除。',
@@ -306,8 +304,6 @@ $translations = [
 	'Network' => '網路',
 	'Geometry' => '幾何',
 	'Relations' => '關聯',
-
-	// 'Editor' => '編輯器',
 	// date format in Editor: $1 yyyy, $2 yy, $3 mm, $4 m, $5 dd, $6 d
 	'$1-$3-$5' => '$1.$3.$5',
 	// hint for date format - use language equivalents for day, month and year shortcuts
@@ -367,4 +363,5 @@ $translations = [
 	'Alter check' => null,
 	'Create check' => null,
 	'Checks' => null,
+	'Invalid permanent login, please login again.' => null,
 ];

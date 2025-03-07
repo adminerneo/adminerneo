@@ -78,7 +78,6 @@ $translations = [
 
 	'Database' => 'База даних',
 	'Use' => 'Обрати',
-	'Select database' => 'Обрати базу даних',
 	'Invalid database.' => 'Погана база даних.',
 	'Database has been dropped.' => 'Базу даних було видалено.',
 	'Databases have been dropped.' => 'Бази даних були видалені.',
@@ -275,8 +274,6 @@ $translations = [
 	'Network' => 'Мережа',
 	'Geometry' => 'Геометрія',
 	'Relations' => 'Зв\'язки',
-
-	// 'Editor' => 'Редактор',
 	// date format in Editor: $1 yyyy, $2 yy, $3 mm, $4 m, $5 dd, $6 d
 	'$1-$3-$5' => '$5.$3.$1',
 	// hint for date format - use language equivalents for day, month and year shortcuts
@@ -330,11 +327,10 @@ $translations = [
 	'Default value' => 'Значення за замовчуванням',
 	'Full table scan' => 'Повне сканування таблиці',
 	'Too many unsuccessful logins, try again in %d minute(s).' => ['Занадто багато невдалих спроб входу. Спробуйте знову через %d хвилину.', 'Занадто багато невдалих спроб входу. Спробуйте знову через %d хвилини.', 'Занадто багато невдалих спроб входу. Спробуйте знову через %d хвилин.'],
-	'Master password expired. <a href="https://www.adminer.org/en/extension/"%s>Implement</a> %s method to make it permanent.' => 'Термін дії майстер пароля минув. <a href="https://www.adminer.org/en/extension/"%s>Реалізуйте</a> метод %s, щоб зробити його постійним.',
 	'The action will be performed after successful login with the same credentials.' => 'Дія буде виконуватися після успішного входу в систему з тими ж обліковими даними.',
 	'Connecting to privileged ports is not allowed.' => 'Підключення до привілейованих портів заборонено.',
 	'There is a space in the input password which might be the cause.' => 'У вхідному паролі є пробіл, який може бути причиною.',
-	'If you did not send this request from AdminNeo then close this page.' => 'Якщо ви не посилали цей запит з AdminNeo, закрийте цю сторінку.',
+	'If you did not send this request from AdminNeo then close this page.' => 'Якщо ви не посилали цей запит з AdminerNeo, закрийте цю сторінку.',
 	'You can upload a big SQL file via FTP and import it from server.' => 'Ви можете завантажити великий файл SQL через FTP та імпортувати його з сервера.',
 	'Size' => 'Розмір',
 	'Compute' => 'Обчислити',
@@ -367,4 +363,5 @@ $translations = [
 	'Alter check' => null,
 	'Create check' => null,
 	'Checks' => null,
+	'Invalid permanent login, please login again.' => null,
 ];

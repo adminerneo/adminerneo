@@ -16,10 +16,9 @@ $translations = [
 	'Logout successful.' => 'Uloskirjautuminen onnistui.',
 	'Invalid server or credentials.' => null,
 	'Too many unsuccessful logins, try again in %d minute(s).' => ['Liian monta epäonnistunutta sisäänkirjautumisyritystä, kokeile uudestaan %d minuutin kuluttua.', 'Liian monta epäonnistunutta sisäänkirjautumisyritystä, kokeile uudestaan %d minuutin kuluttua.'],
-	'Master password expired. <a href="https://www.adminer.org/en/extension/"%s>Implement</a> %s method to make it permanent.' => 'Master-salasana ei ole enää voimassa. <a href="https://www.adminer.org/en/extension/"%s>Toteuta</a> %s-metodi sen tekemiseksi pysyväksi.',
 	'Language' => 'Kieli',
 	'Invalid CSRF token. Send the form again.' => 'Virheellinen CSRF-vastamerkki. Lähetä lomake uudelleen.',
-	'If you did not send this request from AdminNeo then close this page.' => 'Jollet lähettänyt tämä pyyntö AdminNeo, sulje tämä sivu.',
+	'If you did not send this request from AdminNeo then close this page.' => 'Jollet lähettänyt tämä pyyntö AdminerNeo, sulje tämä sivu.',
 	'No extension' => 'Ei laajennusta',
 	'None of the supported PHP extensions (%s) are available.' => 'Mitään tuetuista PHP-laajennuksista (%s) ei ole käytettävissä.',
 	'Session support must be enabled.' => 'Istuntotuki on oltava päällä.',
@@ -63,7 +62,7 @@ $translations = [
 	'Edit all' => 'Muokkaa kaikkia',
 
 	'File upload' => 'Tiedoston lataus palvelimelle',
-	'From server' => 'Verkkopalvelimella AdminNeo-kansiossa oleva tiedosto',
+	'From server' => 'Verkkopalvelimella Adminer-kansiossa oleva tiedosto',
 	'Webserver file %s' => 'Verkkopalvelintiedosto %s',
 	'Run file' => 'Suorita tämä',
 	'File does not exist.' => 'Tiedostoa ei ole.',
@@ -84,7 +83,6 @@ $translations = [
 
 	'Database' => 'Tietokanta',
 	'Use' => 'Käytä',
-	'Select database' => 'Valitse tietokanta',
 	'Invalid database.' => 'Tietokanta ei kelpaa.',
 	'Database has been dropped.' => 'Tietokanta on poistettu.',
 	'Databases have been dropped.' => 'Tietokannat on poistettu.',
@@ -295,8 +293,6 @@ $translations = [
 	'Network' => 'Verkko',
 	'Geometry' => 'Geometria',
 	'Relations' => 'Suhteet',
-
-	// 'Editor' => 'Editori',
 	// date format in Editor: $1 yyyy, $2 yy, $3 mm, $4 m, $5 dd, $6 d
 	'$1-$3-$5' => '$5.$3.$1',
 	// hint for date format - use language equivalents for day, month and year shortcuts
@@ -367,4 +363,5 @@ $translations = [
 	'Alter check' => null,
 	'Create check' => null,
 	'Checks' => null,
+	'Invalid permanent login, please login again.' => null,
 ];

@@ -19,10 +19,9 @@ $translations = [
 	'AdminNeo does not support accessing a database without a password, <a href="https://www.adminer.org/en/password/"%s>more information</a>.' => 'AdminNeo tillåter inte att ansluta till en databas utan lösenord. <a href="https://www.adminer.org/en/password/"%s>Mer information</a>.',
 	'Database does not support password.' => 'Databasen stödjer inte lösenord.',
 	'Too many unsuccessful logins, try again in %d minute(s).' => ['För många misslyckade inloggningar, försök igen om %d minut.', 'För många misslyckade inloggningar, försök igen om %d minuter.'],
-	'Master password expired. <a href="https://www.adminer.org/en/extension/"%s>Implement</a> %s method to make it permanent.' => 'Huvudlösenordet har löpt ut. <a href="https://www.adminer.org/en/extension/"%s>Implementera</a> %s en metod för att göra det permanent.',
 	'Language' => 'Språk',
 	'Invalid CSRF token. Send the form again.' => 'Ogiltig CSRF-token. Skicka formuläret igen.',
-	'If you did not send this request from AdminNeo then close this page.' => 'Om du inte skickade en förfrågan från AdminNeo så kan du stänga den här sidan.',
+	'If you did not send this request from AdminNeo then close this page.' => 'Om du inte skickade en förfrågan från AdminerNeo så kan du stänga den här sidan.',
 	'No extension' => 'Inget tillägg',
 	'None of the supported PHP extensions (%s) are available.' => 'Inga av de PHP-tilläggen som stöds (%s) är tillgängliga.',
 	'Connecting to privileged ports is not allowed.' => 'Anslutning till privilegierade portar är inte tillåtet.',
@@ -93,7 +92,6 @@ $translations = [
 	'Database' => 'Databas',
 	'DB' => 'DB',
 	'Use' => 'Använd',
-	'Select database' => 'Välj databas',
 	'Invalid database.' => 'Ogiltig databas.',
 	'Database has been dropped.' => 'Databasen har tagits bort.',
 	'Databases have been dropped.' => 'Databaserna har tagits bort.',
@@ -306,8 +304,6 @@ $translations = [
 	'Network' => 'Nätverk',
 	'Geometry' => 'Geometri',
 	'Relations' => 'Relationer',
-
-	// 'Editor' => 'Redigerare',
 	// date format in Editor: $1 yyyy, $2 yy, $3 mm, $4 m, $5 dd, $6 d
 	'$1-$3-$5' => '$1-$3-$5',
 	// hint for date format - use language equivalents for day, month and year shortcuts
@@ -366,4 +362,5 @@ $translations = [
 	'Alter check' => null,
 	'Create check' => null,
 	'Checks' => null,
+	'Invalid permanent login, please login again.' => null,
 ];

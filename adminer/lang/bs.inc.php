@@ -78,7 +78,6 @@ $translations = [
 
 	'Database' => 'Baza podataka',
 	'Use' => 'Koristi',
-	'Select database' => 'Izaberite bazu',
 	'Invalid database.' => 'Neispravna baza podataka.',
 	'Database has been dropped.' => 'Baza podataka je izbrisana.',
 	'Databases have been dropped.' => 'Baze podataka su izbrisane.',
@@ -280,8 +279,6 @@ $translations = [
 	'Network' => 'Mreža',
 	'Geometry' => 'Geometrija',
 	'Relations' => 'Odnosi',
-
-	// 'Editor' => 'Uređivač',
 	// date format in Editor: $1 yyyy, $2 yy, $3 mm, $4 m, $5 dd, $6 d
 	'$1-$3-$5' => '$5.$3.$1.',
 	// hint for date format - use language equivalents for day, month and year shortcuts
@@ -333,7 +330,6 @@ $translations = [
 	'AdminNeo does not support accessing a database without a password, <a href="https://www.adminer.org/en/password/"%s>more information</a>.' => null,
 	'Default value' => null,
 	'Too many unsuccessful logins, try again in %d minute(s).' => [],
-	'Master password expired. <a href="https://www.adminer.org/en/extension/"%s>Implement</a> %s method to make it permanent.' => null,
 	'The action will be performed after successful login with the same credentials.' => null,
 	'Connecting to privileged ports is not allowed.' => null,
 	'There is a space in the input password which might be the cause.' => null,
@@ -367,4 +363,5 @@ $translations = [
 	'Alter check' => null,
 	'Create check' => null,
 	'Checks' => null,
+	'Invalid permanent login, please login again.' => null,
 ];

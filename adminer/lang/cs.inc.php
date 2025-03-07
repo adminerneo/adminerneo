@@ -94,7 +94,6 @@ $translations = [
 	'Database' => 'Databáze',
 	'DB' => 'DB',
 	'Use' => 'Vybrat',
-	'Select database' => 'Vybrat databázi',
 	'Invalid database.' => 'Nesprávná databáze.',
 	'Database has been dropped.' => 'Databáze byla odstraněna.',
 	'Databases have been dropped.' => 'Databáze byly odstraněny.',
@@ -308,8 +307,6 @@ $translations = [
 	'Network' => 'Síť',
 	'Geometry' => 'Geometrie',
 	'Relations' => 'Vztahy',
-
-	// 'Editor' => 'Editor',
 	// date format in Editor: $1 yyyy, $2 yy, $3 mm, $4 m, $5 dd, $6 d
 	'$1-$3-$5' => '$6.$4.$1',
 	// hint for date format - use language equivalents for day, month and year shortcuts

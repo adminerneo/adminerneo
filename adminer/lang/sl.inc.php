@@ -77,7 +77,6 @@ $translations = [
 
 	'Database' => 'Baza',
 	'Use' => 'Uporabi',
-	'Select database' => 'Izberi bazo',
 	'Invalid database.' => 'Neveljavna baza.',
 	'Database has been dropped.' => 'Baza je zavržena.',
 	'Databases have been dropped.' => 'Baze so zavržene.',
@@ -270,8 +269,6 @@ $translations = [
 	'Network' => 'Mrežni',
 	'Geometry' => 'Geometrčni',
 	'Relations' => 'Relacijski',
-
-	// 'Editor' => 'Urejevalnik',
 	// date format in Editor: $1 yyyy, $2 yy, $3 mm, $4 m, $5 dd, $6 d
 	'$1-$3-$5' => '$6.$4.$1',
 	// hint for date format - use language equivalents for day, month and year shortcuts
@@ -327,7 +324,6 @@ $translations = [
 	'Default value' => null,
 	'Full table scan' => null,
 	'Too many unsuccessful logins, try again in %d minute(s).' => [],
-	'Master password expired. <a href="https://www.adminer.org/en/extension/"%s>Implement</a> %s method to make it permanent.' => null,
 	'The action will be performed after successful login with the same credentials.' => null,
 	'Connecting to privileged ports is not allowed.' => null,
 	'There is a space in the input password which might be the cause.' => null,
@@ -364,4 +360,5 @@ $translations = [
 	'Alter check' => null,
 	'Create check' => null,
 	'Checks' => null,
+	'Invalid permanent login, please login again.' => null,
 ];
