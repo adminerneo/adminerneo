@@ -36,7 +36,7 @@ foreach ($file_paths as $file_path) {
 }
 
 // Generate language file.
-foreach (glob(__DIR__ . "/../adminer/lang/" . ($_SESSION["lang"] ?: "*") . ".inc.php") as $file_path) {
+foreach (glob(__DIR__ . "/../adminer/lang/" . ($_SESSION["lang"] ?? "*") . ".inc.php") as $file_path) {
 	$filename = basename($file_path);
 	$messages = $all_messages;
 
