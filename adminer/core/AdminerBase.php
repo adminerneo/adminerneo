@@ -225,7 +225,13 @@ abstract class AdminerBase
 
 	public abstract function loginForm();
 
-	public abstract function loginFormField($name, $heading, $value);
+	/**
+	 * Returns composed row for login form field.
+	 */
+	public function composeLoginFormRow(string $fieldName, string $heading, string $field): string
+	{
+		return "$heading$field\n";
+	}
 
 	public abstract function tableName($tableStatus);
 

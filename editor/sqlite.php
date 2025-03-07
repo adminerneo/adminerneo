@@ -8,9 +8,9 @@ function create_adminer(): Adminer
 
 	class CustomAdminer extends Adminer
 	{
-		function loginFormField($name, $heading, $value)
+		function composeLoginFormRow(string $fieldName, string $heading, string $field): string
 		{
-			return parent::loginFormField($name, $heading, str_replace('value="mysql"', 'value="sqlite"', $value));
+			return parent::composeLoginFormRow($fieldName, $heading, str_replace('value="mysql"', 'value="sqlite"', $field));
 		}
 
 		function database()

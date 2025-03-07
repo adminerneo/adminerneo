@@ -65,15 +65,11 @@ class Adminer extends AdminerBase
 
 	function loginForm() {
 		echo "<table class='box'>\n";
-		echo $this->loginFormField('username', '<tr><th>' . lang('Username') . '<td>', '<input type="hidden" name="auth[driver]" value="mysql"><input class="input" name="auth[username]" id="username" value="' . h($_GET["username"]) . '" autocomplete="username" autocapitalize="off">');
-		echo $this->loginFormField('password', '<tr><th>' . lang('Password') . '<td>', '<input type="password" class="input" name="auth[password]" autocomplete="current-password">' . "\n");
+		echo $this->composeLoginFormRow('username', '<tr><th>' . lang('Username') . '<td>', '<input type="hidden" name="auth[driver]" value="mysql"><input class="input" name="auth[username]" id="username" value="' . h($_GET["username"]) . '" autocomplete="username" autocapitalize="off">');
+		echo $this->composeLoginFormRow('password', '<tr><th>' . lang('Password') . '<td>', '<input type="password" class="input" name="auth[password]" autocomplete="current-password">');
 		echo "</table>\n";
 		echo "<p><input type='submit' class='button default' value='" . lang('Login') . "'>\n";
 		echo checkbox("auth[permanent]", 1, $_COOKIE["adminer_permanent"], lang('Permanent login')) . "\n";
-	}
-
-	function loginFormField($name, $heading, $value) {
-		return $heading . $value;
 	}
 
 	function tableName($tableStatus) {

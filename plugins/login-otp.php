@@ -24,17 +24,11 @@ class AdminerLoginOtp
 		}
 	}
 
-	/**
-	 * @param string $name
-	 * @param string $heading
-	 * @param string $value
-	 *
-	 * @return string|null
-	 */
-	public function loginFormField($name, $heading, $value) {
-		if ($name != "password") return null;
+	function composeLoginFormRow(string $fieldName, string $heading, string $field): ?string
+	{
+		if ($fieldName != "password") return null;
 
-		return $heading . $value .
+		return "$heading$field\n" .
 			"<tr><th><abbr title='" . lang('One Time Password') . "' lang='en'>OTP</abbr></th>" .
 			"<td><input class='input' name='auth[otp]' value='" . h($_SESSION["otp"]) . "' " .
 			"size='6' autocomplete='one-time-code' inputmode='numeric' maxlength='6' pattern='\d{6}'/></td>" .

@@ -24,6 +24,7 @@ Migrating to 5.0
     - credentials() -> getCredentials()
     - login() -> authenticate()
     - serverName() -> getServerName()
+    - loginFormField() -> composeLoginFormRow()
 - TODO: removed customizable css() method, config option `cssUrls`
 - TODO: removed unused selectQueryBuild() customization method
 - TODO: set `navigationMode` as a replacement for [AdminerSimpleMenu](https://github.com/pematon/adminer-plugins?tab=readme-ov-file#adminersimplemenu)
